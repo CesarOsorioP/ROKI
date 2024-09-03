@@ -15,7 +15,7 @@ const LandingPage = () => {
 
       {/* Contenido principal */}
       <header className="landing-header">
-        <h1>Bienvenido a Roki</h1>
+        <h1>Bienvenido a ROKI</h1>
         <p>Tu plataforma de streaming de música favorita</p>
       </header>
       
@@ -38,7 +38,7 @@ const LandingPage = () => {
       </section>
 
       <footer className="landing-footer">
-        <p>© 2024 Roki. Todos los derechos reservados.</p>
+        <p>© 2024 ROKI. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
