@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; /* Fondo oscuro */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    background-color: #1c1c1c; /* Fondo oscuro */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un poco de profundidad */
+  }
+  
+  .login-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .login-form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ffd700; /* Borde amarillo */
+    background: transparent;
+    color: white;
+  }
+  
+  .login-form button {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #67a569; /* Fondo rosa */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .login-form button:hover {
+    background-color: #67a569; /* Fondo rosa más oscuro al pasar el ratón */
+  }
+  
+  .login-container a {
+    color: #ffd700; /* Enlace amarillo */
+    text-decoration: none;
+  }
+  
+  .login-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .forgot-password {
+    margin-top: 10px;
+  }
+  
+  .create-account {
+    margin-top: 20px;
+  }
+  
