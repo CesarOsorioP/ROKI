@@ -76,7 +76,7 @@ body {
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #67a569;
+  background-color: #Efb810;
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -84,7 +84,7 @@ body {
 }
 
 .btn:hover {
-  background-color: #c2185b;
+  background-color: #Efb810;
   transform: scale(1.05);
 }
 
