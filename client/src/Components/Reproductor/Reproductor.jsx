@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from './Navbar'
 
 function Reproductor() {
     return (
-        <div>Reproductor</div>
+        <div>
+            <Navbar/>
+            {}
+        </div>
     )
 }
 

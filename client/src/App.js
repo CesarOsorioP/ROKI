@@ -5,6 +5,9 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import Reproductor from './Pages/Reproductor';
 
+
+
+
 function App() {
   return (
     <div className='main-content'>
@@ -14,6 +17,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/reproductor" element={<Reproductor/>}/>
+
+        
         </Routes>
       </BrowserRouter>
     </div>
