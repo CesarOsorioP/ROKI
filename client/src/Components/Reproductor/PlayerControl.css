@@ -1,0 +1,51 @@
+.player-control {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #0a0a0a91;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .player-info {
+    display: flex;
+    flex-direction: column;
+    color: #ccc;
+  }
+  
+  .player-info span:first-child {
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .player-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .player-buttons svg {
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+  }
+  
+  .player-buttons svg:hover {
+    color: #ff69b4;
+  }
+  
+  .player-volume {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .player-volume input {
+    cursor: pointer;
+    background-color: #555;
+  }
+  
