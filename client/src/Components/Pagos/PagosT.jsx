@@ -1,110 +1,211 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from "./card.jsx";
 import "./Pagos.css";
 import SelectButton from './SelectButton.jsx';
 
 const PagosT = () => {
-    const handleSelection = (isSelected) => {
-        console.log(isSelected ? "Botón seleccionado" : "Botón deseleccionado");
+    const [isCreditCardSelected, setIsCreditCardSelected] = useState(false);
+    const [isPaypalSelected, setIsPaypalSelected] = useState(false);
+
+    const handleCreditCardSelection = () => {
+        setIsCreditCardSelected(prevState => !prevState);
+        // Si deseas cerrar PayPal al seleccionar Tarjeta de Crédito:
+        if (isPaypalSelected) setIsPaypalSelected(false);
+    };
+
+    const handlePaypalSelection = () => {
+        setIsPaypalSelected(prevState => !prevState);
+        // Si deseas cerrar Tarjeta de Crédito al seleccionar PayPal:
+        if (isCreditCardSelected) setIsCreditCardSelected(false);
     };
 
     return (
         <Card>
-            <div class="split">
-            <div class="modal">
-                <form class="form">
-                    <div class="credit-card-info--form">
-                                <div class="input_container">
-                                    <div>
-                                        <h1>Metodo de pago</h1>
-                                    </div>
-                                    <div>
-                                        <h2>Escoge tu metodo de pago</h2>
-                                    </div>
-                                    <div>
-                                    <SelectButton text="Tarjeta debito/credito" onSelect={handleSelection} />
-                                    </div>
-                                            <label class="input_label" for="password_field">Nombre completo dueño</label>
-                                            <div class = "split">
-                                            <div><input
-                                            placeholder="Nombre"
-                                            title="Inpit title"
-                                            name="input-name"
-                                            type="text"
-                                            class="input_field"
-                                            id="password_field"
-                                            size = "20"
-                                            />
-                                            </div>
-                                            <div>
-                                            <input
-                                            placeholder="Apellido"
-                                            title="Inpit title"
-                                            name="input-name"
-                                            type="text"
-                                            class="input_field"
-                                            id="password_field"
-                                            size = "20"
-                                            />
+            <div className="split">
+                <div className="modal">
+                    <form className="form">
+                        <div className="credit-card-info--form">
+                            <div className="input_container">
+                                <div>
+                                    <h1>Método de pago</h1>
+                                </div>
+                                <div>
+                                    <h2>Escoge tu método de pago</h2>
+                                </div>
+                                <div>
+                                    <SelectButton text="Tarjeta debito/credito" onSelect={handleCreditCardSelection} />
+                                </div>
+
+                                {isCreditCardSelected && (
+                                    <>
+                                        <div>
+                                            <label className="input_label" htmlFor="password_field">Nombre completo dueño</label>
+                                            <div className="split">
+                                                <div>
+                                                    <input
+                                                        placeholder="Nombre"
+                                                        title="Input title"
+                                                        name="input-name"
+                                                        type="text"
+                                                        className="input_field"
+                                                        id="password_field"
+                                                        size="20"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        placeholder="Apellido"
+                                                        title="Input title"
+                                                        name="input-name"
+                                                        type="text"
+                                                        className="input_field"
+                                                        id="password_field"
+                                                        size="20"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
-                                </div>
-                                    
-                                <div class="input_container">
-                                    <label class="input_label" for="password_field">Card Number</label>
-                                    <input
-                                    placeholder="0000 0000 0000 0000"
-                                    title="Inpit title"
-                                    name="input-name"
-                                    type="number"
-                                    class="input_field"
-                                    id="password_field"
-                                    />
-                                </div>
-                                <div class="input_container">
-                                    <label class="input_label" for="password_field"
-                                    >Expiry Date / CVV</label
-                                    >
-                                    <div class="split">
-                                    <input
-                                        placeholder="01/23"
-                                        title="Expiry Date"
-                                        name="input-name"
-                                        type="text"
-                                        class="input_field"
-                                        id="password_field"
-                                    />
-                                    <input
-                                        placeholder="CVV"
-                                        title="CVV"
-                                        name="cvv"
-                                        type="number"
-                                        class="input_field"
-                                        id="password_field"
-                                    />
-                                    </div>
-                                </div>
+
+                                        <div className="input_container">
+                                            <label className="input_label" htmlFor="password_field">Card Number</label>
+                                            <input
+                                                placeholder="0000 0000 0000 0000"
+                                                title="Input title"
+                                                name="input-name"
+                                                type="number"
+                                                className="input_field"
+                                                id="password_field"
+                                            />
+                                        </div>
+                                        <div className="input_container">
+                                            <label className="input_label" htmlFor="password_field">Expiry Date / CVV</label>
+                                            <div className="split">
+                                                <input
+                                                    placeholder="01/23"
+                                                    title="Expiry Date"
+                                                    name="input-name"
+                                                    type="text"
+                                                    className="input_field"
+                                                    id="password_field"
+                                                />
+                                                <input
+                                                    placeholder="CVV"
+                                                    title="CVV"
+                                                    name="cvv"
+                                                    type="number"
+                                                    className="input_field"
+                                                    id="password_field"
+                                                />
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
                                 <div>
-                                <div>
-                                    <SelectButton text="Paypal" onSelect={handleSelection} />
-                                    </div>
+                                    <SelectButton 
+                                        text="Paypal" 
+                                        onSelect={handlePaypalSelection}
+                                    />
                                 </div>
+                                {isPaypalSelected && (
+                                    <>
+                                        <div>
+                                            <label className="input_label" htmlFor="password_field">Nombre completo dueño</label>
+                                            <div className="split">
+                                                <div>
+                                                    <input
+                                                        placeholder="Nombre"
+                                                        title="Input title"
+                                                        name="input-name"
+                                                        type="text"
+                                                        className="input_field"
+                                                        id="password_field"
+                                                        size="20"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        placeholder="Apellido"
+                                                        title="Input title"
+                                                        name="input-name"
+                                                        type="text"
+                                                        className="input_field"
+                                                        id="password_field"
+                                                        size="20"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="input_container">
+                                            <label className="input_label" htmlFor="password_field">Card Number</label>
+                                            <input
+                                                placeholder="0000 0000 0000 0000"
+                                                title="Input title"
+                                                name="input-name"
+                                                type="number"
+                                                className="input_field"
+                                                id="password_field"
+                                            />
+                                        </div>
+                                        <div className="input_container">
+                                            <label className="input_label" htmlFor="password_field">Expiry Date / CVV</label>
+                                            <div className="split">
+                                                <input
+                                                    placeholder="01/23"
+                                                    title="Expiry Date"
+                                                    name="input-name"
+                                                    type="text"
+                                                    className="input_field"
+                                                    id="password_field"
+                                                />
+                                                <input
+                                                    placeholder="CVV"
+                                                    title="CVV"
+                                                    name="cvv"
+                                                    type="number"
+                                                    className="input_field"
+                                                    id="password_field"
+                                                />
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                    </form>
+                </div>
+                {/* Aquí reemplazamos la sección anterior con el componente de membresía */}
+                <div className="membership-card">
+                    <h1 className="membership-title">R O K I</h1>
+                    <h1 className="membership-title">M E M B E R S H I P</h1>
+                    <div className="membership-details">
+                        <h2>Membresía ROKI mensual</h2>
+                        <div className="membership-date">
+                            <p><strong>Fecha:</strong></p>
+                            <div className="membership-plan">
+                                <div className="date-box">
+                                    <p>2/09/2024</p>
+                                    <p>$4.99 USD</p>
+                                </div>
+                                <p className="plan-description">primeros 30 días</p>
+                            </div>
+                            <div className="membership-plan">
+                                <div className="date-box">
+                                    <p>2/10/2024</p>
+                                </div>
+                                <p className="plan-description">Renovación de plan cada 30 días</p>
+                            </div>
+                        </div>
+                        <div className="total-section">
+                            <p><strong>TOTAL:</strong></p>
+                            <p>$19.900</p>
+                        </div>
                     </div>
-                </form>
-            </div>
-            <div>
-                <form class = "form">
-                <h1>chupalaaaaaaaaaa</h1>
-                <button class="purchase--btn">Suscribirse</button>
-                </form>
-            </div>
+                    <button className="subscribe-button">Suscribirme</button>
+                </div>
             </div>
         </Card>
-        
-
-        
     );
 };
 
 export default PagosT;
-
