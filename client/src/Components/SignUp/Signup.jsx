@@ -1,18 +1,26 @@
 import React from 'react';
 import './Signup.css';
+import Card from '../Pagos/card'
 
 const Signup = () => {
     return (
+        <Card>
         <div className="signup-container">
-        <h2>Regístrate ahora en Roki!</h2>
+        <h2 >Regístrate ahora en Roki!</h2>
         <form className="signup-form">
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Contraseña" />
-        <input type="text" placeholder="Nombre de usuario" />
+        <p class = "bolded">¿Ya tienes una cuenta? <a href="/login">Conéctate</a>.</p>
+        <h3 class = "text-align">Email</h3>
+        <input type="email" placeholder="ROKI@gmail.com" />
+        <h3 class = "text-align">Contraseña</h3>
+        <input type="password" placeholder="################" />
+        <h3 class = "text-align">Nombre de usuario</h3>
+        <input type="text" placeholder="Gogo Manotas" />
+        <h3 class = "text-align">Edad</h3>
+        <input type="text" placeholder="0" />
         <button type="submit">Registrarse</button>
         </form>
-        <p>¿Ya tienes una cuenta? <a href="/login">Conéctate</a>.</p>
         </div>
+        </Card>
     );
 };
 
