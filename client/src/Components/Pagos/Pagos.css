@@ -90,7 +90,7 @@
   }
 
   .membership-card {
-    background-color: #1b1b1b;
+    background: linear-gradient(black, gray);
     padding: 20px;
     border-radius: 10px;
     width: 300px;
@@ -138,19 +138,7 @@
     font-size: 18px;
 }
 
-.subscribe-button {
-    background-color: #565656;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
 
-.subscribe-button:hover {
-    background-color: #757575;
-}
 
   
   /* Reset input number styles */

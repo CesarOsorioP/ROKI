@@ -17,7 +17,7 @@
     background-color: #4CAF50; /* Color de fondo cuando está seleccionado */
     border-color: #3e8e41;
     color: white;
-    transform: translateX(0)
+
 }
 
 .select-button.selected:hover {

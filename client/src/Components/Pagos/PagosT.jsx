@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Card from "./card.jsx";
 import "./Pagos.css";
 import SelectButton from './SelectButton.jsx';
+import NavigateButton from './NavigateButton.jsx';
 
 const PagosT = () => {
     const [isCreditCardSelected, setIsCreditCardSelected] = useState(false);
@@ -174,7 +175,6 @@ const PagosT = () => {
                                 )}
                     </form>
                 </div>
-                {/* Aquí reemplazamos la sección anterior con el componente de membresía */}
                 <div className="membership-card">
                     <h1 className="membership-title">R O K I</h1>
                     <h1 className="membership-title">M E M B E R S H I P</h1>
@@ -201,7 +201,7 @@ const PagosT = () => {
                             <p>$19.900</p>
                         </div>
                     </div>
-                    <button className="subscribe-button">Suscribirme</button>
+                    <NavigateButton></NavigateButton>
                 </div>
             </div>
         </Card>
