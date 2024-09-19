@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; /* Fondo oscuro */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #1c1c1c; /* Fondo oscuro */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un poco de profundidad */
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para el texto */
+}
+
+.login-form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #d4af37; /* Borde dorado */
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+    border-bottom: 2px solid #67a569; /* Cambia el color del borde al enfocar */
+    outline: none;
+}
+
+.login-form button {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #67a569; /* Fondo verde */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #558a4f; /* Fondo verde más oscuro al pasar el ratón */
+}
+
+.login-container a {
+    color: #d4af37; /* Enlace dorado */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-container a:hover {
+    color: #67a569; /* Cambia el color del enlace al pasar el ratón */
+    text-decoration: underline;
+}
+
+.forgot-password {
+    margin-top: 10px;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para el texto */
+}
+
+.create-account {
+    margin-top: 20px;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para el texto */
+}

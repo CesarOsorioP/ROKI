@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #15150de1; /* Fondo oscuro */
+  }
+  
+  .signup-container {
+    background-color: #1c1c1c; /* Fondo oscuro */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un poco de profundidad */
+  }
+  
+  .signup-form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ffd700; /* Borde amarillo */
+    background: transparent;
+    color: white;
+  }
+  
+  .signup-form button {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #5b965d; /* Fondo rosa */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .signup-form button:hover {
+    background-color: #67a569; /* Fondo rosa más oscuro al pasar el ratón */
+  }
+  
+  .signup-container a {
+    color: #ffd700; /* Enlace amarillo */
+    text-decoration: none;
+  }
+  
+  .signup-container a:hover {
+    text-decoration: underline;
+  }
+  

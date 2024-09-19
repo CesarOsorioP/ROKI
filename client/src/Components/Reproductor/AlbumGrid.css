@@ -1,0 +1,27 @@
+.album-grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px; /* Espacio entre los elementos reducido */
+}
+
+.album-item {
+    background-color: #2b2b2b; /* Color de fondo gris suave */
+    padding: 20px; /* Espaciado interno reducido */
+    border-radius: 10px; /* Bordes redondeados */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para la animación */
+}
+
+.album-item:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el efecto de elevación */
+}
+
+.album-placeholder {
+    width: 100px; /* Ancho del placeholder reducido */
+    height: 100px; /* Alto del placeholder reducido */
+    background-color: #444444; /* Color de fondo del placeholder */
+    border-radius: 50%; /* Placeholder circular */
+}
