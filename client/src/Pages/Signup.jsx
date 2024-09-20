@@ -1,5 +1,6 @@
 import React from 'react';
 import SignupForm from '../Components/SignUp/Signup'; // Asegúrate de que la ruta sea correcta
+import './CSS/signup.css'
 
 const Signup = () => {
   return (
