@@ -1,4 +1,6 @@
+// src/components/Navbar.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaHome, FaSearch, FaMusic, FaPlus, FaUser } from 'react-icons/fa';
 import './Navbar.css';
 
@@ -6,16 +8,16 @@ function Navbar() {
   return (
     <nav className="navbar">
       <ul>
-        <li><FaUser /> Usuario</li>
-        <li><FaHome /> Inicio</li>
-        <li><FaSearch /> Explorar</li>
+        <li><Link to="/user"><FaUser /> Usuario</Link></li> {/* Enlace actualizado */}
+        <li><Link to="/reproductor"><FaHome /> Inicio</Link></li>
+        <li><Link to="/explore"><FaSearch /> Explorar</Link></li>
         <h2>MI MÚSICA</h2>
-        <li><FaMusic /> Canción</li>
-        <li><FaMusic /> Álbum</li>
-        <li><FaMusic /> Artista</li>
-        <li><FaMusic /> Playlists</li>
+        <li><Link to="/songs"><FaMusic /> Canción</Link></li>
+        <li><Link to="/albums"><FaMusic /> Álbum</Link></li>
+        <li><Link to="/artists"><FaMusic /> Artista</Link></li>
+        <li><Link to="/playlists"><FaMusic /> Playlists</Link></li>
         <h2>LISTAS DE REPRODUCCIÓN</h2>
-        <li><FaPlus /> Crear...</li>
+        <li><Link to="/create"><FaPlus /> Crear...</Link></li>
       </ul>
     </nav>
   );
