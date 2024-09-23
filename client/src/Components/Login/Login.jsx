@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import './Login.css'; // Asegúrate de que el CSS esté en un archivo llamado Login.css
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,10 +21,11 @@ const Login = () => {
 
       const data = await response.json();
       if (response.ok) {
-        // Manejar el éxito del inicio de sesión
+        // Guardar el token en localStorage
+        localStorage.setItem('token', data.token);
         console.log('Inicio de sesión exitoso:', data);
+        navigate('/reproductor');
       } else {
-        // Manejar errores
         setError(data.msg);
       }
     } catch (err) {

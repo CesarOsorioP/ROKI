@@ -1,11 +1,12 @@
 import React from 'react';
-import { FaHome, FaSearch, FaMusic, FaPlus } from 'react-icons/fa';
+import { FaHome, FaSearch, FaMusic, FaPlus, FaUser } from 'react-icons/fa';
 import './Navbar.css';
 
 function Navbar() {
   return (
     <nav className="navbar">
       <ul>
+        <li><FaUser /> Usuario</li>
         <li><FaHome /> Inicio</li>
         <li><FaSearch /> Explorar</li>
         <h2>MI MÚSICA</h2>
