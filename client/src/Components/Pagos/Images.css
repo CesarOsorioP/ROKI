@@ -1,0 +1,28 @@
+
+  .mastercard {
+    width: 55px; /* Ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Ajusta la imagen para que cubra el área */
+    position: absolute;
+    top: 290px; /* Ajusta la posición desde la parte superior */
+    left: 900px; /* Ajusta la posición desde la izquierda */
+  }
+
+  
+  .visa {
+    width: 55px; /* Ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Ajusta la imagen para que cubra el área */
+    position: absolute;
+    top: 290px; /* Ajusta la posición desde la parte superior */
+    left: 800px; /* Ajusta la posición desde la izquierda */
+  }
+
+  .paypal {
+    width: 55px; /* Ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Ajusta la imagen para que cubra el área */
+    position: absolute;
+    top: 455px; /* Ajusta la posición desde la parte superior */
+    left: 900px; /* Ajusta la posición desde la izquierda */
+  }

@@ -8,9 +8,9 @@ body {
 }
 
 .signup-container {
-  background-color: #1c1c1c; /* Fondo oscuro */
+  background-color: #111111; /* Fondo oscuro */
   color: white;
-  padding: 20px;
+  padding: 2px;
   border-radius: 10px;
   width: 300px;
   text-align: center;
@@ -33,7 +33,7 @@ body {
   width: 80%;
   margin: 20px auto;
   padding: 10px;
-  background-color: #5b965d; /* Fondo rosa */
+  background-color: #5b965d;
   color: white;
   border: none;
   cursor: pointer;
@@ -55,4 +55,47 @@ body {
 
 .text-align {
   text-align:start;
+}
+
+
+
+
+
+
+.registro-page {
+  background: linear-gradient(to bottom, #000, #333);
+  color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 600px; /* Aumenta el tamaño del contenedor */
+  margin: auto;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.top-bar .logo {
+  font-size: 1.5em;
+  color: #fff;
+}
+
+.top-bar .roki-plus-link {
+  color: #ff0;
+  text-decoration: none;
+}
+
+.registro-container {
+  background: #333;
+  padding: 20px; /* Aumenta el padding para hacer el contenedor más grande */
+  border-radius: 10px;
+  margin-top: 20px;
+  text-align: center; /* Centra el contenido */
+}
+
+ .yellow-text {
+  color: #ff0;
 }

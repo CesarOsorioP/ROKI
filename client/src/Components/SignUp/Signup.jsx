@@ -30,8 +30,32 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
+
+<div className="registro-page">
+      <div className="top-bar">
+        <span className="logo">R O K I</span>
+        <a href="/pagos" className="roki-plus-link">Obtiene Roki plus</a>
+      </div>
+
+      <div className='registro-container'>
       <h2>Regístrate ahora en Roki!</h2>
+      <p>¿Ya tienes una cuenta? <a href="/login" className="yellow-text">Conéctate</a>.</p>
+      <form className="signup-form" onSubmit={onSubmit}>
+      <h3 class = "text-align">Email</h3>
+        <input type="email" name="email" value={email} onChange={onChange} placeholder="Email" />
+        <h3 class = "text-align">Contraseña</h3>
+        <input type="password" name="password" value={password} onChange={onChange} placeholder="Contraseña" />
+        <h3 class = "text-align">Nombre de usuario</h3>
+        <input type="text" name="username" value={username} onChange={onChange} placeholder="Nombre de usuario" />
+        <h3 class = "text-align">Edad</h3>
+        <input type="number" placeholder="Edad" />
+        <button type="submit">Registrarse</button>
+      </form>
+      
+      </div>
+      
+      
+      {/*<h2>Regístrate ahora en Roki!</h2>
       <p>¿Ya tienes una cuenta? <a href="/login">Conéctate</a>.</p>
       <form className="signup-form" onSubmit={onSubmit}>
       <h3 class = "text-align">Email</h3>
@@ -44,6 +68,8 @@ const Signup = () => {
         <input type="number" placeholder="Edad" />
         <button type="submit">Registrarse</button>
       </form>
+      */}
+      
     </div>
   );
 };
