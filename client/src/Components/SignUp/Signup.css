@@ -22,7 +22,8 @@ body {
     margin: 10px auto;
     padding: 10px;
     border: none;
-    border-bottom: 2px solid #ffd700; /* Borde amarillo */
+    border-radius: 8%;
+    border: 2px solid #ffd700; /* Borde amarillo */
     background: transparent;
     color: white;
   }
