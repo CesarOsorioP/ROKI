@@ -1,27 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Signup.css';
-import Card from '../Pagos/card'
 
 const Signup = () => {
-    return (
-        <Card>
-        <div className="signup-container">
-        <h2 >Regístrate ahora en Roki!</h2>
-        <form className="signup-form">
-        <p class = "bolded">¿Ya tienes una cuenta? <a href="/login">Conéctate</a>.</p>
-        <h3 class = "text-align">Email</h3>
-        <input type="email" placeholder="ROKI@gmail.com" />
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    username: '',
+  });
+
+  const { email, password, username } = formData;
+
+  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password, username }),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+
+<div className="registro-page">
+      <div className="top-bar">
+        <span className="logo">R O K I</span>
+        <a href="/pagos" className="roki-plus-link">Obtiene Roki plus</a>
+      </div>
+
+      <div className='registro-container'>
+      <h2>Regístrate ahora en Roki!</h2>
+      <p>¿Ya tienes una cuenta? <a href="/login" className="yellow-text">Conéctate</a>.</p>
+      <form className="signup-form" onSubmit={onSubmit}>
+      <h3 class = "text-align">Email</h3>
+        <input type="email" name="email" value={email} onChange={onChange} placeholder="Email" />
         <h3 class = "text-align">Contraseña</h3>
-        <input type="password" placeholder="################" />
+        <input type="password" name="password" value={password} onChange={onChange} placeholder="Contraseña" />
         <h3 class = "text-align">Nombre de usuario</h3>
-        <input type="text" placeholder="Gogo Manotas" />
+        <input type="text" name="username" value={username} onChange={onChange} placeholder="Nombre de usuario" />
         <h3 class = "text-align">Edad</h3>
-        <input type="text" placeholder="0" />
+        <input type="number" placeholder="Edad" />
         <button type="submit">Registrarse</button>
-        </form>
-        </div>
-        </Card>
-    );
+      </form>
+      
+      </div>
+      
+      
+      {/*<h2>Regístrate ahora en Roki!</h2>
+      <p>¿Ya tienes una cuenta? <a href="/login">Conéctate</a>.</p>
+      <form className="signup-form" onSubmit={onSubmit}>
+      <h3 class = "text-align">Email</h3>
+        <input type="email" name="email" value={email} onChange={onChange} placeholder="Email" />
+        <h3 class = "text-align">Contraseña</h3>
+        <input type="password" name="password" value={password} onChange={onChange} placeholder="Contraseña" />
+        <h3 class = "text-align">Nombre de usuario</h3>
+        <input type="text" name="username" value={username} onChange={onChange} placeholder="Nombre de usuario" />
+        <h3 class = "text-align">Edad</h3>
+        <input type="number" placeholder="Edad" />
+        <button type="submit">Registrarse</button>
+      </form>
+      */}
+      
+    </div>
+  );
 };
 
 export default Signup;
