@@ -1,4 +1,66 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #15150de1; /* Fondo oscuro */
+  }
+  
+  .signup-container {
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un poco de profundidad */
+  }
+  
+  .signup-form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border: none;
+    border-radius: 8%;
+    border: 2px solid #ffd700; /* Borde amarillo */
+    background: transparent;
+    color: white;
+  }
+  
+  .signup-form button {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #BF8F00;
+    font-weight: bold; 
+    color: #3C9D5D;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .signup-form button:hover {
+    background-color: #806000; /* Fondo rosa más oscuro al pasar el ratón */
+  }
+  
+  .signup-container a {
+    color: #3C9D5D; /* Enlace amarillo */
+    text-decoration: none;
+  }
+  
+  .signup-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .text-align {
+    text-align:start;
+  }
+
+  .bolded { font-weight: bold; 
+              color: #708A79;}
+=======
   display: flex;
   justify-content: center;
   align-items: center;
