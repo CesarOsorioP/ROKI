@@ -6,8 +6,8 @@ import Login from './Pages/Login';
 import Reproductor from './Pages/Reproductor';
 import Pagospage from './Pages/Pagos';
 import UserInfo from './Components/Reproductor/UserInfo';
-
-
+import RecuperatePage from './Pages/recuperarContrase;a';
+import RecuperatePage2 from './Pages/recuperateC';
 
 
 function App() {
@@ -21,7 +21,8 @@ function App() {
           <Route path="/reproductor" element={<Reproductor/>}/>
           <Route path="/pagos" element={<Pagospage/>}/>
           <Route path="/user" element={<UserInfo />} /> {/* Nueva ruta para la información del usuario */}
-        
+          <Route path="/recuperarCont" element={<RecuperatePage/>} />
+          <Route path="/recuperar" element={<RecuperatePage2/>} />
         </Routes>
       </BrowserRouter>
     </div>

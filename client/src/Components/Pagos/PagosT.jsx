@@ -61,7 +61,7 @@ const PagosT = () => {
                             </div>
                             </div>
                             <div>
-                            <label className="input_label" htmlFor="password_field">
+                            <label className="input_label" >
                                 Nombre completo dueño
                             </label>
                             <div className="split">
