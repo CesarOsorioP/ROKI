@@ -14,7 +14,7 @@ const recuperarContraseña = () => {
                         </svg>
                         <span>Atras</span>
                         </button>
-                        <h2 className="onlytittle">¿Olvidaste tu contraseña?</h2>
+                        <h2>¿Olvidaste tu contraseña?</h2>
                     </div>
                     <div>
                         <p>
