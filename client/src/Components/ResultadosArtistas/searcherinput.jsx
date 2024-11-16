@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Para redirigir al componente de resultados
-import "./artistcss.jsx";
+
 
 const ArtistSearcher = () => {
   const [searchTerm, setSearchTerm] = useState(""); // Estado para manejar el input

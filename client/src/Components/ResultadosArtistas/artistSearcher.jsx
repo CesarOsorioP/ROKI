@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom"; // Para obtener parámetros de la URL
 import Card from "../Pagos/card.jsx";
 import "./artistsearcher.css";
+import ArtistSearcher from "./searcherinput.jsx"; 
 
 const SearchArtist = () => {
   const [artistas, setArtistas] = useState([]); // Estado para almacenar los artistas
@@ -27,6 +28,7 @@ const SearchArtist = () => {
   return (
     <Card>
       <div className="divprime">
+        <ArtistSearcher></ArtistSearcher>
         <div className="title">
           <h2>Resultados de artistas que concuerden con: {query}</h2>
         </div>

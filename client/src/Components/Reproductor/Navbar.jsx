@@ -15,7 +15,7 @@ function Navbar() {
         <li><Link to="/songs"><FaMusic /> Canción</Link></li>
         <li><Link to="/albums"><FaMusic /> Álbum</Link></li>
         <li><Link to="/artist"><FaMusic /> Artista</Link></li>
-        <li><Link to="/playlists"><FaMusic /> Playlists</Link></li>
+        <li><Link to="/Playlist"><FaMusic /> Playlists</Link></li>
         <h2>LISTAS DE REPRODUCCIÓN</h2>
         <li><Link to="/create"><FaPlus /> Crear...</Link></li>
       </ul>

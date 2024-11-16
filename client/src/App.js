@@ -10,6 +10,7 @@ import ArtistInfo from './Components/Reproductor/ArtistInfo';
 import RecuperatePage from './Pages/recuperarContrase;a';
 import RecuperatePage2 from './Pages/recuperateC';
 import ResultsArtistsPage from './Pages/searcherArtist';
+import PlayList from './Pages/Playlist';
 
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/forgot-password" element={<RecuperatePage/>} />
           <Route path="/recuperar" element={<RecuperatePage2/>} />
           <Route path="/artist-results" element ={<ResultsArtistsPage/>}/>
+          <Route path="/Playlist" element={<PlayList/>}/>
         </Routes>
       </BrowserRouter>
     </div>
