@@ -1,0 +1,131 @@
+/* General layout for the page */
+.album-page {
+    display: flex;
+    height: 90vh; /* Reduced height for less vertical space */
+    color: #ffffff;
+    overflow-y: auto;
+    width: 100%; /* Ensure full width of the page */
+}
+
+/* Main album content */
+.album-content {
+    margin-left: 220px; /* Offset for the sidebar */
+    padding: 40px;
+    flex: 1;
+    width: 100%; /* Take up the full width */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Album header styling */
+.album-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* Album image styling */
+.album-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Album information styling */
+.album-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 500px;
+}
+
+.album-info h2 {
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font for the album title */
+    font-size: 3em; /* Larger title */
+    font-weight: 700; /* Make it bold */
+    color: #ffffff;
+    margin: 0;
+}
+
+.artist-name {
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font for artist name */
+    font-style: italic;
+    font-size: 1.5em;
+    color: #b3b3b3;
+    margin: 5px 0;
+}
+
+.album-description {
+    font-family: 'Roboto', sans-serif; /* Use Roboto for description */
+    font-size: 1.1em;
+    color: #d1d1d1;
+    line-height: 1.6;
+}
+
+/* Divider for album content */
+.divider {
+    margin: 30px 0;
+    border: 1px solid #444;
+}
+
+/* Song list styling */
+.song-list {
+    margin-top: 10px;
+}
+
+.song-item {
+    display: flex;
+    align-items: center; /* Align number and name */
+    justify-content: flex-start;
+    padding: 12px 0;
+    font-size: 1.2em; /* Increased font size for song names */
+    font-family: 'Roboto', sans-serif; /* Use Roboto for song names */
+    color: #ffffff;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.song-item:hover {
+    color: #ff69b4;
+    transform: translateX(5px);
+}
+
+/* Aligning song number to be at the same level as the song name */
+.song-number {
+    width: 50px; /* Space for the number */
+    text-align: right;
+    margin-right: 20px; /* Margin between number and song name */
+}
+
+/* Player container styling */
+.player-container {
+    position: fixed;
+    bottom: 0;
+    left: 220px;
+    right: 0;
+    background: #000000ec;
+    padding: 15px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    z-index: 10; /* Ensure it's on top */
+    width: 100%;
+}
+
+/* Responsive adjustments for mobile and tablet devices */
+@media (max-width: 768px) {
+    .album-page {
+        flex-direction: column;
+    }
+
+    .album-content {
+        margin-left: 0;
+        padding: 20px;
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .player-container {
+        left: 0;
+    }
+}

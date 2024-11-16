@@ -1,0 +1,88 @@
+/* Estilo general para el contenedor principal */
+.manage-artists-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2d2d2d; /* Fondo oscuro */
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo del formulario */
+.artist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3b3b3b;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    background-color: #4c4c4c;
+    border: 2px solid #67a569; /* Borde verde */
+}
+
+/* Botón de submit */
+.submit-btn {
+    background-color: #67a569;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #558a4f;
+}
+
+/* Mensajes de éxito y error */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+/* Lista de artistas */
+.artists-list {
+    list-style: none;
+    padding: 0;
+}
+
+.artist-item {
+    background-color: #3b3b3b;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-btn {
+    background-color: #d4af37; /* Color dorado */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #a88f28; /* Color dorado más oscuro */
+}

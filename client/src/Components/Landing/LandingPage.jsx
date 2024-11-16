@@ -39,7 +39,7 @@ const LandingPage = () => {
       </section>
 
       <footer className="landing-footer">
-        <p>© 2024 ROKI. Todos los derechos reservados.</p>
+        
       </footer>
     </div>
   );

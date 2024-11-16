@@ -1,0 +1,21 @@
+
+  .mastercard {
+    width: 55px; /* Ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    
+     /* Ajusta la posición desde la izquierda */
+  }
+
+  
+  .visa {
+    width: 55px; /* Ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    
+     /* Ajusta la posición desde la izquierda */
+  }
+
+  .paypal {
+    width: 55px; /* Ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+     /* Ajusta la posición desde la izquierda */
+  }

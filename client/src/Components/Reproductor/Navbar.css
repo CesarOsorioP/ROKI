@@ -69,3 +69,16 @@
     display: none;
   }
 }
+/* src/components/Navbar.css */
+.logout-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.logout-button:hover {
+  background-color: #ff3333;
+}

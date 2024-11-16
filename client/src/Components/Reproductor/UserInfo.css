@@ -12,11 +12,11 @@
 }
 
 .banner {
-    width: calc(100% - 220px);
-    height: 150px;
-    position: fixed;
+    width: calc(100% - 262px);
+    height: 220px;
+    position: absolute;
     top: 0;
-    left: 260px;
+    left: 261px;
     background: linear-gradient(to right, #5e4968, #815a3a);
     border-radius: 0 0 25px 25px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);

@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1c1c1c; /* Fondo oscuro */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.create-admin-container {
+  background-color: #1c1c1c; /* Fondo oscuro */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un poco de profundidad */
+}
+
+.create-admin-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para el texto */
+}
+
+.create-admin-form input {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #d4af37; /* Borde dorado */
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.create-admin-form input:focus {
+  border-bottom: 2px solid #67a569; /* Cambia el color del borde al enfocar */
+  outline: none;
+}
+
+.create-admin-form button {
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #67a569; /* Fondo verde */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.create-admin-form button:hover {
+  background-color: #558a4f; /* Fondo verde más oscuro al pasar el ratón */
+}
+
+.create-admin-container p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.create-admin-container p.success {
+  color: #67a569; /* Verde para el éxito */
+}
+
+.create-admin-container p.error {
+  color: red; /* Rojo para el error */
+}

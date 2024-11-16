@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 const ArtistSchema = new Schema({
     nombre_artistico: {
         type: String,
@@ -17,6 +20,15 @@ const ArtistSchema = new Schema({
     },
     edad: {
         type: Number,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
         required: true,
     },
     seguidores: [{

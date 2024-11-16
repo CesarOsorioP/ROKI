@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-    const SongSchema = new Schema({
+const SongSchema = new Schema({
     nombre: {
         type: String,
         required: true,
@@ -32,6 +32,10 @@ const Schema = mongoose.Schema;
         type: String,
         required: true,
     },
-    });
+    enlace_cancion: {
+        type: String,
+        required: true,
+    },
+});
 
-    module.exports = mongoose.model('Song', SongSchema);
+module.exports = mongoose.models.Song || mongoose.model('Song', SongSchema);

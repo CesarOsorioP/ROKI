@@ -1,43 +1,57 @@
-import React from 'react';
-import { FaPlay, FaStepForward, FaStepBackward, FaHeart, FaRandom } from 'react-icons/fa';
-
-import { MdRepeat } from 'react-icons/md';  // Icono de repetir
+import React, { useState, useRef } from 'react';
 import './PlayerControl.css';
 
-function PlayerControl() {
+const PlayerControl = ({ audioSrc }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const songs = []; // Aquí deberías agregar las canciones
+
+  const togglePlayPause = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const playNextSong = () => {
+    if (currentIndex < songs.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0); // Volver al inicio si es la última canción
+    }
+  };
+
+  const playPreviousSong = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(songs.length - 1); // Volver a la última canción
+    }
+  };
+
   return (
     <div className="player-control">
-      <div className="player-info">
-        <div className="album-cover"></div> {/* Imagen del álbum */}
-        <div className="song-info">
-          <span>Nombre canción</span>
-          <span>Artista</span>
-        </div>
-      </div>
-      <div className="player-center">
-        <div className="player-buttons">
-          <FaRandom className="icon" />
-          <FaStepBackward className="icon" />
-          <FaPlay className="icon play-button" />
-          <FaStepForward className="icon" />
-          <MdRepeat className="icon" />
-        </div>
-        <div className="player-progress">
-          <span>3:47</span>
-          <input type="range" min="0" max="100" value="50" className="progress-bar" />
-          <span>5:32</span>
-        </div>
-      </div>
-    
-  
-      <div className="player-volume">
-        <FaHeart />
-        <FaRandom />
-        <input type="range" min="0" max="100" />
-
+      <audio ref={audioRef} src={audioSrc} preload="auto" />
+      <div className="controls">
+        <button className="control-btn" onClick={playPreviousSong}>
+          <i className="fas fa-step-backward"></i>
+        </button>
+        <button className="control-btn play-pause-btn" onClick={togglePlayPause}>
+          {isPlaying ? (
+            <i className="fas fa-pause"></i>
+          ) : (
+            <i className="fas fa-play"></i>
+          )}
+        </button>
+        <button className="control-btn" onClick={playNextSong}>
+          <i className="fas fa-step-forward"></i>
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default PlayerControl;
