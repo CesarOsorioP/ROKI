@@ -41,8 +41,8 @@ function Navbar() {
         <h2>MI MÚSICA</h2>
         <li><Link to="/songs"><FaMusic /> Canción</Link></li>
         <li><Link to="/albumes"><FaMusic /> Álbum</Link></li>
-        <li><Link to="/artists"><FaMusic /> Artista</Link></li>
-        <li><Link to="/playlist"><FaMusic /> Playlists</Link></li> 
+        <li><Link to="/artist  "><FaMusic /> Artista</Link></li>
+        <li><Link to="/Playlist"><FaMusic /> Playlists</Link></li> 
 
         {userType === 'administrador' && (
           <>

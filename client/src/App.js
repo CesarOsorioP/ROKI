@@ -5,6 +5,8 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import Reproductor from './Pages/Reproductor';
 import Pagospage from './Pages/Pagos';
+import ArtistInfo from './Components/Reproductor/ArtistInfo';
+import ResultsArtistsPage from './Pages/searcherArtist';
 import UserInfo from './Components/Reproductor/UserInfo';
 import RecuperatePage from './Pages/recuperarContrase;a';
 import RecuperatePage2 from './Pages/recuperateC';
@@ -33,9 +35,11 @@ function App() {
           <Route path="/recuperar" element={<RecuperatePage2 />} />
           <Route path="/albumes" element={<AlbumGrid />} /> {/* Muestra el grid de álbumes */}
           <Route path="/albumes/:albumName" element={<Album />} /> {/* Detalle de cada álbum */}
+          <Route path="/artist-results" element ={<ResultsArtistsPage/>}/>
           {/* Rutas de administración */}
           <Route path="/admin/create" element={<CreateAdmin />} />
           {/* Rutas de gestión de artistas */}
+          <Route path="/artist" element= {<ArtistInfo />} />
           <Route path="/artist/create" element={<CreateArtist />} />
           <Route path="/artist/upload-album" element={<UploadAlbum />} />
           <Route path="/artist/upload-song" element={<UploadSong />} />
