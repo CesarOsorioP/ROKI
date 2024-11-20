@@ -2,5 +2,11 @@
   "dependencies": {
     "express-fileupload": "^1.5.1",
     "firebase": "^11.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   }
 }
