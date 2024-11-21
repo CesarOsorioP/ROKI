@@ -7,6 +7,7 @@ import imagen from "./images/Mastercard.png";
 import imagen2 from "./images/pngwing.com.png";
 import imagen3 from "./images/Paypal2.png";
 import "./Images.css";
+import './SelectButton.css';
 
 const PagosT = () => {
   const [isCreditCardSelected, setIsCreditCardSelected] = useState(false);

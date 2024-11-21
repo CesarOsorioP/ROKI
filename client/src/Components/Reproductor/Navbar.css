@@ -3,9 +3,11 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 220px;
-  height: 100vh;
-  background: linear-gradient(135deg, #464747 0%, #000000ec 100%);
+  width: auto;
+  height: auto;
+  background: linear-gradient(135deg, #464747, #000000ec);
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
   color: white;
   display: flex;
   flex-direction: column;
@@ -13,6 +15,14 @@
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
   gap: 20px;
+  overflow-y: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Añadido para suavizar transición */
+
+}
+
+.navbar.hidden {
+  transform: translateX(-220px); /* Oculta la barra fuera de la pantalla */
+  opacity: 0; /* Hace que desaparezca visualmente */
 }
 
 .navbar ul {
@@ -26,11 +36,30 @@
 
 .navbar ul li {
   cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.1em;
+  font-size: 1.2em;
+  padding: 10px 0;
+}
+
+.navbar ul li:hover {
+  transform: translateX(10px) scale(1.1);
+  color: #013846;
+  text-shadow: 0 0 10px #e6bc03, 0 0 20px #013846;
+}
+
+
+.navbar ul li i {
+  font-size: 1.5em;
+  color: #013846;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li:hover i {
+  transform: scale(1.2);
+  color: #fff;
 }
 
 .navbar ul li a {
@@ -39,46 +68,68 @@
   transition: color 0.3s ease;
 }
 
-.navbar ul li:hover {
-  transform: translateX(10px);
-  color: #ff69b4;
-}
-
 .navbar ul li:hover a {
-  color: #ff69b4;
+  color: #013846;
 }
 
 .navbar h2 {
-  margin: 0;
-  font-size: 1.3em;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #444;
+  font-size: 1.4em;
+  color: #013846;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #444;
+  padding-bottom: 5px;
+}
+
+.navbar h2::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: #69d0ff;
+  margin-bottom: 5px;
+}
+
+.logout-button {
+  background: linear-gradient(45deg, #ff4d4d, #ff3333);
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 10px 16px;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.6);
+  margin-top: 20px;
+}
+
+.logout-button:hover {
+  background: white;
+  color: #ff3333;
+  border: 2px solid #ff3333;
+  box-shadow: 0 0 20px #ff3333, 0 0 30px rgba(255, 51, 51, 0.6);
 }
 
 @media (max-width: 768px) {
   .navbar {
     width: 100%;
     height: auto;
-    position: relative;
+    background: #000;
   }
+
   .navbar ul {
-    flex-direction: row;
-    justify-content: space-around;
+    display: none; /* Ocultar menú inicialmente */
+    flex-direction: column;
+    gap: 10px;
   }
+
+  .navbar.active ul {
+    display: flex; /* Mostrar menú al activar */
+  }
+
   .navbar h2 {
     display: none;
   }
-}
-/* src/components/Navbar.css */
-.logout-button {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.logout-button:hover {
-  background-color: #ff3333;
 }
