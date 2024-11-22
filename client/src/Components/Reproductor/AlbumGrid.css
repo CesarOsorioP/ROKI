@@ -1,71 +1,105 @@
 /* General styling for the grid container */
 .album-grid {
-    padding: 20px;
-    margin-left: 20px; /* Desplazar el grid hacia la derecha */
+  padding: 10px;
+  margin-left: 5%; /* Usar porcentaje en lugar de píxeles */
+}
+
+/* Grid container for the album items */
+.album-grid-container {
+  width: 100%;
+  max-width: 1200px; 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 60px; /* Espacio entre los elementos */
+}
+
+/* Individual album card */
+.album-item {
+  background-color: #2b2b2b; /* Fondo gris oscuro */
+  padding: 10px; /* Reducir el espaciado interno */
+  border-radius: 10px; /* Bordes redondeados */
+  display: flex;
+  flex-direction: column; /* Disposición vertical */
+  align-items: center; /* Centrar elementos horizontalmente */
+  justify-content: center; /* Centrar elementos verticalmente */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+  width: 100%; /* La card ocupa todo el ancho disponible */
+  max-width: 220px; /* Limitar el tamaño máximo */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  overflow: hidden; /* Asegura que todo el contenido quede dentro de la card */
+}
+
+/* Efecto hover */
+.album-item:hover {
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más profunda */
+}
+
+/* Image inside the album card */
+.album-image {
+  width: 100%; /* La imagen ocupa el 100% del ancho de la card */
+  height: 180px; /* Ajustar la altura para que encaje dentro de la card */
+  object-fit: cover; /* Asegura que la imagen se recorte y mantenga proporciones */
+  border-radius: 8px; /* Bordes redondeados para la imagen */
+  margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+}
+
+/* Title and artist name styling */
+.album-info {
+  text-align: center; /* Centrado del texto */
+  color: #ffffff;
+}
+
+.album-info h3 {
+  font-size: 1.3em; /* Reducir el tamaño del título */
+  font-weight: bold;
+  margin: 0 0 6px 0; /* Espaciado inferior reducido */
+}
+
+.album-info .artist-name {
+  font-size: 1.0em; /* Reducir el tamaño del nombre del artista */
+  font-style: italic;
+  color: #b3b3b3; /* Color gris claro */
+  margin: 0;
+}
+
+/* Optional: Placeholder for albums without image */
+.album-placeholder {
+  width: 100px; /* Tamaño del placeholder */
+  height: 100px;
+  background-color: #444444; /* Fondo gris del placeholder */
+  border-radius: 50%; /* Forma circular */
+}
+
+/* Responsive Design */
+
+/* Para pantallas pequeñas (teléfonos) */
+@media (max-width: 600px) {
+  .album-grid {
+    margin-left: 2%; /* Reduce el margen en pantallas pequeñas */
+    padding: 5px; /* Ajusta el espaciado */
   }
-  
-  /* Grid container for the album items */
-  .album-grid-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Se mantienen 5 columnas */
-    gap: 15px; /* Espacio entre los elementos */
-  }
-  
-  /* Individual album card */
+
   .album-item {
-    background-color: #2b2b2b; /* Fondo gris oscuro */
-    padding: 15px; /* Reducir el espaciado interno */
-    border-radius: 10px; /* Bordes redondeados */
-    display: flex;
-    flex-direction: column; /* Disposición vertical */
-    align-items: center; /* Centrar elementos horizontalmente */
-    justify-content: center; /* Centrar elementos verticalmente */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
-    width: 100%; /* La card ocupa todo el ancho disponible */
-    max-width: 220px; /* Limitar el tamaño máximo para hacerla más pequeña */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-    overflow: hidden; /* Asegura que todo el contenido quede dentro de la card */
+    max-width: 100%; /* Asegúrate de que las cards ocupen todo el ancho disponible */
   }
-  
-  /* Efecto hover */
-  .album-item:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más profunda */
-  }
-  
-  /* Image inside the album card */
-  .album-image {
-    width: 100%; /* La imagen ocupa el 100% del ancho de la card */
-    height: 180px; /* Ajustar la altura para que encaje dentro de la card */
-    object-fit: cover; /* Asegura que la imagen se recorte y mantenga proporciones */
-    border-radius: 8px; /* Bordes redondeados para la imagen */
-    margin-bottom: 10px; /* Espacio entre la imagen y el texto */
-  }
-  
-  /* Title and artist name styling */
-  .album-info {
-    text-align: center; /* Centrado del texto */
-    color: #ffffff;
-  }
-  
+
   .album-info h3 {
-    font-size: 1.3em; /* Reducir el tamaño del título */
-    font-weight: bold;
-    margin: 0 0 6px 0; /* Espaciado inferior reducido */
+    font-size: 1.1em; /* Ajusta el tamaño del texto */
   }
-  
+
   .album-info .artist-name {
-    font-size: 1.0em; /* Reducir el tamaño del nombre del artista */
-    font-style: italic;
-    color: #b3b3b3; /* Color gris claro */
-    margin: 0;
+    font-size: 0.9em; /* Ajusta el tamaño del texto */
   }
-  
-  /* Optional: Placeholder for albums without image */
-  .album-placeholder {
-    width: 100px; /* Tamaño del placeholder */
-    height: 100px;
-    background-color: #444444; /* Fondo gris del placeholder */
-    border-radius: 50%; /* Forma circular */
+}
+
+/* Para pantallas medianas (tabletas) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .album-grid {
+    margin-left: 5%;
   }
-  
+
+  .album-item {
+    max-width: 180px; /* Ajusta el tamaño máximo */
+  }
+}

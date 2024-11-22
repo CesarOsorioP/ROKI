@@ -4,12 +4,17 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, rgba(28, 28, 28, 0.9), rgba(24, 54, 72, 0.9), rgba(0, 0, 0, 0.9));
+  background-attachment: fixed; /* Hace que el fondo permanezca fijo al hacer scroll */
+  background-size: cover; /* Asegura que el gradiente siempre cubra todo */
+  background-repeat: no-repeat; /* Evita que el fondo se repita */
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-height: 100vh; /* Asegura que siempre cubra al menos el tamaño de la ventana */
 }
+
 
 .landing-container {
   width: 100%;

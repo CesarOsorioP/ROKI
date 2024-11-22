@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "express-fileupload": "^1.5.1",
-    "firebase": "^11.0.1"
+    "firebase": "^11.0.1",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

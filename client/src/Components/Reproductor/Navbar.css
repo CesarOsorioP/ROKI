@@ -1,10 +1,9 @@
-/* Navbar.css */
 .navbar {
   position: fixed;
   left: 0;
   top: 0;
-  width: auto;
-  height: auto;
+  width: 15%;
+  height: 88vh; /* Asegura que el navbar ocupe toda la altura de la ventana */
   background: linear-gradient(135deg, #464747, #000000ec);
   background-size: 200% 200%;
   animation: gradientMove 6s ease infinite;
@@ -15,14 +14,29 @@
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
   gap: 20px;
-  overflow-y: auto;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Añadido para suavizar transición */
-
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Suavizar transición */
+  overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido excede la altura */
+  scrollbar-width: thin; /* Personaliza el ancho del scrollbar (Firefox) */
+  scrollbar-color: #69d0ff transparent; /* Colores del scrollbar (Firefox) */
 }
 
 .navbar.hidden {
   transform: translateX(-220px); /* Oculta la barra fuera de la pantalla */
   opacity: 0; /* Hace que desaparezca visualmente */
+}
+
+/* Estilo para el scrollbar en navegadores basados en WebKit */
+.navbar::-webkit-scrollbar {
+  width: 10px; /* Ancho del scrollbar */
+}
+
+.navbar::-webkit-scrollbar-thumb {
+  background: #69d0ff; /* Color del thumb */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.navbar::-webkit-scrollbar-thumb:hover {
+  background: #013846; /* Color del thumb al pasar el cursor */
 }
 
 .navbar ul {
@@ -49,7 +63,6 @@
   color: #013846;
   text-shadow: 0 0 10px #e6bc03, 0 0 20px #013846;
 }
-
 
 .navbar ul li i {
   font-size: 1.5em;

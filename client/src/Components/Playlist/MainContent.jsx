@@ -40,6 +40,10 @@ function MainContent() {
             <td>Ameri</td>
             <td>3:22</td>
           </tr>
+        
+        
+          
+          
           {/* Añade más filas aquí si lo necesitas */}
         </tbody>
       </table>

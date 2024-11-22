@@ -1,12 +1,15 @@
 .mix-grid-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 15px; /* Espacio entre los elementos reducido */
+    gap: 20px; /* Espacio entre los elementos reducido */
+    width: 100%;
+    max-width: 1200px;
+    margin-left: 5%; /* Usar porcentaje en lugar de píxeles */
 }
 
 .mix-item {
     background-color: #2b2b2b; /* Color de fondo gris suave */
-    padding: 20px; /* Espaciado interno reducido */
+    padding: 10px; /* Espaciado interno */
     border-radius: 10px; /* Bordes redondeados */
     display: flex;
     flex-direction: column; /* Alineación vertical */
@@ -21,14 +24,16 @@
 }
 
 .mix-placeholder {
-    width: 100px; /* Ancho del placeholder reducido */
-    height: 100px; /* Alto del placeholder reducido */
+    width: 100px; /* Tamaño relativo al ancho del contenedor */
+    max-width: 120px; /* Tamaño máximo para pantallas grandes */
+    aspect-ratio: 1; /* Mantiene una forma cuadrada */
     background-color: #444444; /* Color de fondo del placeholder */
     border-radius: 50%; /* Placeholder circular */
 }
 
 .mix-item p {
     margin-top: 10px; /* Espacio entre el placeholder y el texto */
-    font-size: 14px; /* Tamaño de fuente reducido */
-    color: #333; /* Color del texto */
+    font-size: 1rem; /* Tamaño de fuente relativo */
+    color: #ffffff; /* Color del texto */
+    text-align: center; /* Centra el texto */
 }
