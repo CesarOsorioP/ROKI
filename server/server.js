@@ -13,12 +13,14 @@ app.use(express.json());
 app.use(cors());
 
 // Servir la carpeta de uploads como estática
-app.use('./uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Rutas
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/admin', require('./routes/admin'));
-app.use('/api/upload', require('./routes/uploadRoutes'));
+app.use('/api/auth', require('./routes/auth')); // Autenticación
+app.use('/api/admin', require('./routes/admin')); // Funciones de administración
+app.use('/api/upload', require('./routes/uploadRoutes')); // Subidas de archivos
+app.use('/api/artists', require('./routes/artistRoutes'));
+
 
 // Configuración del puerto
 const PORT = process.env.PORT || 5000;
