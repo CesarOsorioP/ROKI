@@ -1,19 +1,28 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
-const checkRole = require('../middleware/checkRole'); // Asegúrate de que el middleware existe
-const auth = require('../middleware/auth');
+const { searchUsuario } = require('../controllers/adminController'); // Importa correctamente searchUsuario
 
-router.use(auth); // Esto asegura que todas las rutas posteriores requieran autenticación
+const checkRole = require('../middleware/checkRole'); // Middleware para roles
+const auth = require('../middleware/auth'); // Middleware de autenticación
 
-// Rutas de administración
+// Aplica autenticación a todas las rutas de este router
+router.use(auth);
+
+// **Rutas para administración de administradores**
 router.post('/create', checkRole(null), adminController.crearAdmin); // Permite a cualquier usuario crear un administrador
-router.put('/:id', checkRole('administrador'), adminController.editarAdmin); // Solo para administradores
+router.put('/:id', checkRole('administrador'), adminController.editarAdmin); // Solo administradores pueden editar administradores
 
-router.post('/artista', checkRole(null), adminController.crearArtista); // Solo para administradores
-router.put('/artista/:id', checkRole(null), adminController.editarArtista); // Solo para administradores
+// **Rutas para administración de artistas**
+router.post('/artista', checkRole('administrador'), adminController.crearArtista); // Solo administradores
+router.put('/artista/:id', checkRole('administrador'), adminController.editarArtista); // Solo administradores
 
-router.post('/usuario', checkRole(null), adminController.crearUsuario); // Solo para administradores
-router.put('/usuario/:id', checkRole(null), adminController.editarUsuario); // Solo para administradores
+// **Rutas para administración de usuarios**
+router.post('/usuario', checkRole('administrador'), adminController.crearUsuario); // Solo administradores
+router.put('/usuario/:id', checkRole('administrador'), adminController.editarUsuario); // Solo administradores
+
+// **Rutas de búsqueda y exploración**
+router.get('/explore', searchUsuario); // Ruta para buscar usuarios
+router.get('/', searchUsuario); // Ruta genérica para buscar usuarios
 
 module.exports = router;
