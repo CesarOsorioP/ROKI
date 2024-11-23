@@ -20,6 +20,7 @@ app.use('/api/auth', require('./routes/auth')); // Autenticación
 app.use('/api/admin', require('./routes/admin')); // Funciones de administración
 app.use('/api/upload', require('./routes/uploadRoutes')); // Subidas de archivos
 app.use('/api/artists', require('./routes/artistRoutes'));
+app.use('/api/songs', require('./routes/songRoutes'));
 
 
 // Configuración del puerto

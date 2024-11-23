@@ -7,6 +7,7 @@ import SearcherComponent from "./searcherinput.jsx";
 const Search = () => {
   const [artists, setArtists] = useState([]); // Estado para artistas
   const [users, setUsers] = useState([]); // Estado para usuarios
+  const [songs, setSongs] = useState([]); // Estado para canciones
   const [error, setError] = useState(null); // Estado para errores
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -22,20 +23,25 @@ const Search = () => {
         const usersPromise = fetch(
           `http://localhost:5000/api/admin/explore?search=${query}`
         );
+        const songPromise = fetch(
+          `http://localhost:5000/api/songs/explore?search=${query}`
+        );
 
-        const [artistsResponse, usersResponse] = await Promise.all([
+        const [artistsResponse, usersResponse, songResponse] = await Promise.all([
           artistsPromise,
           usersPromise,
+          songPromise,
         ]);
 
         // Verifica el estado de las respuestas y maneja los errores individualmente
-        const artistsData =
-          artistsResponse.ok ? await artistsResponse.json() : [];
+        const artistsData = artistsResponse.ok ? await artistsResponse.json() : [];
         const usersData = usersResponse.ok ? await usersResponse.json() : [];
+        const songsData = songResponse.ok ? await songResponse.json() : [];
 
         // Actualizar estados
         setArtists(artistsData);
         setUsers(usersData);
+        setSongs(songsData);
 
         // Restablecer errores si todo funciona bien
         setError(null);
@@ -64,7 +70,6 @@ const Search = () => {
               {artists.map((artist, index) => (
                 <div key={index} className="card">
                   <p><strong>Nombre Artístico:</strong> {artist.nombre_artistico}</p>
-                  <p><strong>Nombre Real:</strong> {artist.nombre_real || "No disponible"}</p>
                 </div>
               ))}
             </div>
@@ -83,8 +88,21 @@ const Search = () => {
             </div>
           )}
 
+          {/* Renderizar sección de canciones */}
+          {songs.length > 0 && (
+            <div>
+              <h3>Canciones</h3>
+              {songs.map((song, index) => (
+                <div key={index} className="card">
+                  <p><strong>Nombre de Canción:</strong> {song.nombre}</p>
+                  
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Mostrar mensaje si no hay resultados */}
-          {artists.length === 0 && users.length === 0 && !error && (
+          {artists.length === 0 && users.length === 0 && songs.length === 0 && !error && (
             <p>No se encontraron resultados.</p>
           )}
         </div>
