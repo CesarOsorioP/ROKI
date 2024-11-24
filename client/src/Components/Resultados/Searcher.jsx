@@ -75,9 +75,8 @@ const Search = () => {
             <div>
               <h3>Artistas</h3>
               {artists.map((artist, index) => (
-                <div key={index} className="card">
+                <div key={index} className="minidiv">
                   <p><strong>Nombre Artístico:</strong> {artist.nombre_artistico}</p>
-                  <p><strong>Nombre álbum:</strong> {artist.nombre_album}</p>
                 </div>
               ))}
             </div>
@@ -88,7 +87,7 @@ const Search = () => {
             <div>
               <h3>Usuarios</h3>
               {users.map((user, index) => (
-                <div key={index} className="card">
+                <div key={index} className="minidiv">
                   <p><strong>Usuario:</strong> {user.username}</p>
                   <p><strong>Email:</strong> {user.email || "No disponible"}</p>
                 </div>
@@ -101,7 +100,7 @@ const Search = () => {
             <div>
               <h3>Canciones</h3>
               {songs.map((song, index) => (
-                <div key={index} className="card">
+                <div key={index} className="minidiv">
                   <p><strong>Nombre de Canción:</strong> {song.nombre}</p>
                   
                 </div>
@@ -114,7 +113,7 @@ const Search = () => {
             <div>
               <h3>Álbumes</h3>
               {albums.map((album, index) => (
-                <div key={index} className="card">
+                <div key={index} className="minidiv">
                   <p><strong>Nombre del Álbum:</strong> {album.nombre}</p>
                 </div>
               ))}

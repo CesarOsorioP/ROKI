@@ -9,14 +9,25 @@ function UploadSong() {
     fecha_publicacion: '',
     album_id: '',
     artista_id: '', // Incluye el artista_id aquí
-    imagen: null,
     audio: null,
   });
+  const [albums, setAlbums] = useState([]); // Estado para almacenar los álbumes del artista
 
   useEffect(() => {
     const artistId = localStorage.getItem('artistId'); // Obtener el ID del artista desde el localStorage
-    console.log('Artist ID from localStorage:', artistId); // Verificar el valor
     setFormData((prevData) => ({ ...prevData, artista_id: artistId }));
+
+    // Obtener los álbumes del artista
+    const fetchAlbums = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/albums?artistId=${artistId}`);
+        setAlbums(response.data);
+      } catch (error) {
+        console.error('Error fetching albums:', error);
+      }
+    };
+
+    if (artistId) fetchAlbums();
   }, []);
 
   const handleChange = (e) => {
@@ -57,8 +68,13 @@ function UploadSong() {
       <input type="text" name="genero" placeholder="Género" onChange={handleChange} />
       <input type="number" name="duracion" placeholder="Duración" onChange={handleChange} />
       <input type="date" name="fecha_publicacion" placeholder="Fecha de Publicación" onChange={handleChange} />
-      <input type="text" name="album_id" placeholder="Album ID (opcional)" onChange={handleChange} />
-      <input type="file" name="imagen" accept="image/*" onChange={handleChange} />
+      {/* Seleccionar álbum */}
+      <select name="album_id" onChange={handleChange} value={formData.album_id}>
+        <option value="">Selecciona un álbum</option>
+        {albums.map(album => (
+          <option key={album._id} value={album._id}>{album.nombre}</option>
+        ))}
+      </select>
       <input type="file" name="audio" accept="audio/*" onChange={handleChange} />
       <button type="submit">Subir Canción</button>
     </form>

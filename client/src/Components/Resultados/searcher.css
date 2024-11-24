@@ -5,6 +5,11 @@
     max-height: auto;
    
   }
+
+  .minidiv{
+    margin: 20px;
+    padding: 10px;
+    }
   
 .title h2 {
     color: white;
@@ -39,4 +44,6 @@
   .split input {
     width: 100%;
   }
+
+
   

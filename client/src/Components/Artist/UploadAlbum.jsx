@@ -1,86 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './UploadAlbum.css';
 
-const UploadAlbum = () => {
+function UploadAlbum() {
   const [formData, setFormData] = useState({
     nombre: '',
     genero: '',
     fecha_publicacion: '',
-    tipo: 'album',  // Puede ser "album" o "ep"
+    artista_id: '',
+    imagen: null,
   });
-  const [imagen, setImagen] = useState(null);
-  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const artistId = localStorage.getItem('artistId'); // Obtener el ID del artista desde el localStorage
+    setFormData((prevData) => ({ ...prevData, artista_id: artistId }));
+  }, []);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e) => {
-    setImagen(e.target.files[0]);
+    const { name, value, files } = e.target;
+    if (files) {
+      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token'); // Asume que el token se almacena en localStorage
     const data = new FormData();
-    data.append('nombre', formData.nombre);
-    data.append('genero', formData.genero);
-    data.append('fecha_publicacion', formData.fecha_publicacion);
-    data.append('tipo', formData.tipo);
-    if (imagen) data.append('imagen', imagen);
+    for (const key in formData) {
+      if (formData[key]) {
+        data.append(key, formData[key]);
+      }
+    }
 
     try {
-      const response = await axios.post('api/upload/album', data, {
+      const response = await axios.post('http://localhost:5000/api/upload/album', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
         },
       });
-      setMessage(response.data.message);
+      console.log(response.data);
     } catch (error) {
-      setMessage('Error al subir el álbum');
+      console.error('Error uploading album:', error);
     }
   };
 
   return (
-    <div className="upload-album-container">
-      <h2>Subir Álbum</h2>
-      <form className="upload-album-form" onSubmit={handleSubmit}>
-        <input 
-          className="form-input"
-          type="text" 
-          name="nombre" 
-          placeholder="Nombre del Álbum" 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          className="form-input"
-          type="text" 
-          name="genero" 
-          placeholder="Género" 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          className="form-input"
-          type="date" 
-          name="fecha_publicacion" 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          className="file-input"
-          type="file" 
-          name="imagen" 
-          onChange={handleFileChange} 
-          accept="image/*" 
-          required 
-        />
-        <button className="submit-btn" type="submit">Subir Álbum</button>
-      </form>
-      {message && <p className="message">{message}</p>}
-    </div>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <input type="text" name="nombre" placeholder="Nombre" onChange={handleChange} />
+      <input type="text" name="genero" placeholder="Género" onChange={handleChange} />
+      <input type="date" name="fecha_publicacion" placeholder="Fecha de Publicación" onChange={handleChange} />
+      <input type="file" name="imagen" accept="image/*" onChange={handleChange} />
+      <button type="submit">Subir Álbum</button>
+    </form>
   );
-};
+}
 
 export default UploadAlbum;
