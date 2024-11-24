@@ -26,22 +26,29 @@ const Search = () => {
         const songPromise = fetch(
           `http://localhost:5000/api/songs/explore?search=${query}`
         );
+        const albumPromise = fetch(
+          `http://localhost:5000/api/albums/explore?search=${query}`
+        );
 
-        const [artistsResponse, usersResponse, songResponse] = await Promise.all([
+
+        const [artistsResponse, usersResponse, songResponse, albumResponse] = await Promise.all([
           artistsPromise,
           usersPromise,
           songPromise,
+          albumPromise,
         ]);
 
         // Verifica el estado de las respuestas y maneja los errores individualmente
         const artistsData = artistsResponse.ok ? await artistsResponse.json() : [];
         const usersData = usersResponse.ok ? await usersResponse.json() : [];
         const songsData = songResponse.ok ? await songResponse.json() : [];
+        const albumsData = albumResponse.ok ? await albumResponse.json() : [];
 
         // Actualizar estados
         setArtists(artistsData);
         setUsers(usersData);
         setSongs(songsData);
+        setAlbums(albumsData);
 
         // Restablecer errores si todo funciona bien
         setError(null);
@@ -63,13 +70,14 @@ const Search = () => {
         </div>
         {error && <p className="error">{error}</p>}
         <div className="grid">
-          {/* Renderizar sección de artistas */}
+          {/* Renderizar sección de resultados */}
           {artists.length > 0 && (
             <div>
               <h3>Artistas</h3>
               {artists.map((artist, index) => (
                 <div key={index} className="card">
                   <p><strong>Nombre Artístico:</strong> {artist.nombre_artistico}</p>
+                  <p><strong>Nombre album:</strong> {artist.nombre_album}</p>
                 </div>
               ))}
             </div>
@@ -95,6 +103,17 @@ const Search = () => {
               {songs.map((song, index) => (
                 <div key={index} className="card">
                   <p><strong>Nombre de Canción:</strong> {song.nombre}</p>
+                  
+                </div>
+              ))}
+            </div>
+          )}
+          {albums.length > 0 && (
+            <div>
+              <h3>Albumes</h3>
+              {albums.map((album, index) => (
+                <div key={index} className="card">
+                  <p><strong>Nombre de Canción:</strong> {album.nombre}</p>
                   
                 </div>
               ))}
