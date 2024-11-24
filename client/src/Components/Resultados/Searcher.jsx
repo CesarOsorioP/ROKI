@@ -8,7 +8,7 @@ const Search = () => {
   const [artists, setArtists] = useState([]); // Estado para artistas
   const [users, setUsers] = useState([]); // Estado para usuarios
   const [songs, setSongs] = useState([]); // Estado para canciones
-  const [albums, setAlbums] = useState([]); // Estado para álbumes
+  const [albums, setAlbums] = useState([]); // Estado para canciones
   const [error, setError] = useState(null); // Estado para errores
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -19,17 +19,18 @@ const Search = () => {
       try {
         // Realizar llamadas a las APIs
         const artistsPromise = fetch(
-          `http://localhost:5000/api/artists/explore?search=${query}`
+          http://localhost:5000/api/artists/explore?search=${query}
         );
         const usersPromise = fetch(
-          `http://localhost:5000/api/admin/explore?search=${query}`
+          http://localhost:5000/api/admin/explore?search=${query}
         );
         const songPromise = fetch(
-          `http://localhost:5000/api/songs/explore?search=${query}`
+          http://localhost:5000/api/songs/explore?search=${query}
         );
         const albumPromise = fetch(
-          `http://localhost:5000/api/albums/explore?search=${query}`
+          http://localhost:5000/api/albums/explore?search=${query}
         );
+
 
         const [artistsResponse, usersResponse, songResponse, albumResponse] = await Promise.all([
           artistsPromise,
@@ -72,12 +73,12 @@ const Search = () => {
         <div className="grid">
           {/* Renderizar sección de resultados */}
           {artists.length > 0 && (
-            <div>
+            <div className="minidiv">
               <h3>Artistas</h3>
               {artists.map((artist, index) => (
                 <div key={index} className="card">
                   <p><strong>Nombre Artístico:</strong> {artist.nombre_artistico}</p>
-                  <p><strong>Nombre álbum:</strong> {artist.nombre_album}</p>
+                  <p><strong>Nombre album:</strong> {artist.nombre_album}</p>
                 </div>
               ))}
             </div>
@@ -85,7 +86,7 @@ const Search = () => {
 
           {/* Renderizar sección de usuarios */}
           {users.length > 0 && (
-            <div>
+            <div className="minidiv">
               <h3>Usuarios</h3>
               {users.map((user, index) => (
                 <div key={index} className="card">
@@ -98,7 +99,7 @@ const Search = () => {
 
           {/* Renderizar sección de canciones */}
           {songs.length > 0 && (
-            <div>
+            <div className="minidiv">
               <h3>Canciones</h3>
               {songs.map((song, index) => (
                 <div key={index} className="card">
@@ -108,21 +109,21 @@ const Search = () => {
               ))}
             </div>
           )}
-
-          {/* Renderizar sección de álbumes */}
           {albums.length > 0 && (
-            <div>
-              <h3>Álbumes</h3>
+            <div className="minidiv">
+              <h3>Albumes</h3>
+              console.log(albums)
               {albums.map((album, index) => (
                 <div key={index} className="card">
-                  <p><strong>Nombre del Álbum:</strong> {album.nombre}</p>
+                  <p><strong>Nombre de Canción:</strong> {album.nombre}</p>
+                  
                 </div>
               ))}
             </div>
           )}
 
           {/* Mostrar mensaje si no hay resultados */}
-          {artists.length === 0 && users.length === 0 && songs.length === 0 && albums.length === 0 && !error && (
+          {artists.length === 0 && users.length === 0 && songs.length === 0 && !error && (
             <p>No se encontraron resultados.</p>
           )}
         </div>
