@@ -14,7 +14,7 @@ router.post('/create', checkRole(null), adminController.crearAdmin); // Permite 
 router.put('/:id', checkRole('administrador'), adminController.editarAdmin); // Solo administradores pueden editar administradores
 
 // **Rutas para administración de artistas**
-router.post('/artista', checkRole('administrador'), adminController.crearArtista); // Solo administradores
+router.post('/artista', checkRole(null), adminController.crearArtista); // Permite a cualquier usuario crear un artista
 router.put('/artista/:id', checkRole('administrador'), adminController.editarArtista); // Solo administradores
 
 // **Rutas para administración de usuarios**

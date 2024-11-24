@@ -23,10 +23,15 @@ function Login() {
             const data = await response.json();
 
             if (response.ok) {
-                const { token, username, userType } = data;
+                const { token, username, userType, artistId } = data; // Asegúrate de obtener artistId
                 localStorage.setItem('token', token); // Guardar el token en localStorage
                 localStorage.setItem('username', username);
                 localStorage.setItem('userType', userType);
+
+                // Guardar el artistId en localStorage si el usuario es un artista
+                if (userType === 'artista') {
+                    localStorage.setItem('artistId', artistId);
+                }
 
                 // Redirigir según el tipo de usuario
                 navigate(userType === 'administrador' ? '/reproductor' : '/reproductor');
@@ -61,12 +66,12 @@ function Login() {
                 <button type="submit">Iniciar Sesión</button>
             </form>
             {error && <p className="error">{error}</p>}
-      <div className="forgot-password">
-        <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
-      </div>
-      <div className="create-account">
-        <a href="/signup">¿No tienes una cuenta? Regístrate</a>
-      </div>
+            <div className="forgot-password">
+                <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div className="create-account">
+                <a href="/signup">¿No tienes una cuenta? Regístrate</a>
+            </div>
         </div>
     );
 }

@@ -1,124 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './UploadSong.css';
 
-const UploadSong = () => {
+function UploadSong() {
   const [formData, setFormData] = useState({
     nombre: '',
     genero: '',
     duracion: '',
     fecha_publicacion: '',
-    album_id: '',  // ID del álbum opcional
+    album_id: '',
+    artista_id: '', // Incluye el artista_id aquí
+    imagen: null,
+    audio: null,
   });
-  const [imagen, setImagen] = useState(null);
-  const [audio, setAudio] = useState(null);
-  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const artistId = localStorage.getItem('artistId'); // Obtener el ID del artista desde el localStorage
+    console.log('Artist ID from localStorage:', artistId); // Verificar el valor
+    setFormData((prevData) => ({ ...prevData, artista_id: artistId }));
+  }, []);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleImageChange = (e) => {
-    setImagen(e.target.files[0]);
-  };
-
-  const handleAudioChange = (e) => {
-    setAudio(e.target.files[0]);
+    const { name, value, files } = e.target;
+    if (files) {
+      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token'); // Asume que el token se almacena en localStorage
     const data = new FormData();
-    data.append('nombre', formData.nombre);
-    data.append('genero', formData.genero);
-    data.append('duracion', formData.duracion);
-    data.append('fecha_publicacion', formData.fecha_publicacion);
-    if (formData.album_id) data.append('album_id', formData.album_id);
-    if (imagen) data.append('imagen', imagen);
-    if (audio) data.append('audio', audio);
-
-    // Obtener el ID del artista desde el localStorage
-    const artistaId = localStorage.getItem('artistaId');
-    if (artistaId) {
-      data.append('artista_id', artistaId); // Envía el ID del artista
+    for (const key in formData) {
+      if (formData[key]) {
+        data.append(key, formData[key]);
+      }
     }
 
     try {
       const response = await axios.post('http://localhost:5000/api/upload/song', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
         },
       });
-      setMessage(response.data.message);
+      console.log(response.data);
     } catch (error) {
-      console.error(error); // Log de error
-      setMessage('Error al subir la canción');
+      console.error('Error uploading song:', error);
     }
   };
 
   return (
-    <div className="upload-song-container">
-      <h2>Subir Canción</h2>
-      <form className="upload-song-form" onSubmit={handleSubmit}>
-        <input 
-          className="form-input"
-          type="text" 
-          name="nombre" 
-          placeholder="Nombre de la Canción" 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          className="form-input"
-          type="text" 
-          name="genero" 
-          placeholder="Género" 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          className="form-input"
-          type="number" 
-          name="duracion" 
-          placeholder="Duración (segundos)" 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          className="form-input"
-          type="date" 
-          name="fecha_publicacion" 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          className="form-input"
-          type="text" 
-          name="album_id" 
-          placeholder="ID del Álbum (opcional)" 
-          onChange={handleChange} 
-        />
-        <input 
-          className="file-input"
-          type="file" 
-          name="imagen" 
-          onChange={handleImageChange} 
-          accept="image/*" 
-          required 
-        />
-        <input 
-          className="file-input"
-          type="file" 
-          name="audio" 
-          onChange={handleAudioChange} 
-          accept="audio/*" 
-          required 
-        />
-        <button className="submit-btn" type="submit">Subir Canción</button>
-      </form>
-      {message && <p className="message">{message}</p>}
-    </div>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <input type="text" name="nombre" placeholder="Nombre" onChange={handleChange} />
+      <input type="text" name="genero" placeholder="Género" onChange={handleChange} />
+      <input type="number" name="duracion" placeholder="Duración" onChange={handleChange} />
+      <input type="date" name="fecha_publicacion" placeholder="Fecha de Publicación" onChange={handleChange} />
+      <input type="text" name="album_id" placeholder="Album ID (opcional)" onChange={handleChange} />
+      <input type="file" name="imagen" accept="image/*" onChange={handleChange} />
+      <input type="file" name="audio" accept="audio/*" onChange={handleChange} />
+      <button type="submit">Subir Canción</button>
+    </form>
   );
-};
+}
 
 export default UploadSong;

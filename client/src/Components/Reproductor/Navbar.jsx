@@ -38,7 +38,7 @@ function Navbar() {
       {/* Botón para ocultar/mostrar el contenido */}
       <div>
         <SelectButton
-          className = "buttoncss"
+          className="buttoncss"
           text={isVisible ? "Ocultar menú" : "Mostrar menú"} // Cambiar texto dinámicamente
           onSelect={toggleVisibility} // Cambiar el estado de visibilidad
         />

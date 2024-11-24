@@ -18,6 +18,7 @@ import UploadSong from './Pages/UploadSong';
 import AlbumGrid from './Components/Reproductor/AlbumGrid';
 import Album from './Pages/Album';
 import PlayList from './Pages/Playlist';
+import Canciones from './Pages/Canciones'; // Importación correcta de Canciones
 
 
 function App() {
@@ -34,12 +35,13 @@ function App() {
           <Route path="/forgot-password" element={<RecuperatePage />} />
           <Route path="/recuperar" element={<RecuperatePage2 />} />
           <Route path="/albumes" element={<AlbumGrid />} /> {/* Muestra el grid de álbumes */}
+          <Route path="/canciones" element={<Canciones />} /> {/* Muestra la lista de canciones */}
           <Route path="/albumes/:albumName" element={<Album />} /> {/* Detalle de cada álbum */}
-          <Route path="/explore" element ={<ResultsPage/>}/>
+          <Route path="/explore" element={<ResultsPage />} />
           {/* Rutas de administración */}
           <Route path="/admin/create" element={<CreateAdmin />} />
           {/* Rutas de gestión de artistas */}
-          <Route path="/artist" element= {<ArtistInfo />} />
+          <Route path="/artist" element={<ArtistInfo />} />
           <Route path="/artist/create" element={<CreateArtist />} />
           <Route path="/artist/upload-album" element={<UploadAlbum />} />
           <Route path="/artist/upload-song" element={<UploadSong />} />
