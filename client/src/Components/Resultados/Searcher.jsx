@@ -8,6 +8,7 @@ const Search = () => {
   const [artists, setArtists] = useState([]); // Estado para artistas
   const [users, setUsers] = useState([]); // Estado para usuarios
   const [songs, setSongs] = useState([]); // Estado para canciones
+  const [albums, setAlbums] = useState([]); // Estado para canciones
   const [error, setError] = useState(null); // Estado para errores
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -111,6 +112,7 @@ const Search = () => {
           {albums.length > 0 && (
             <div>
               <h3>Albumes</h3>
+              console.log(albums)
               {albums.map((album, index) => (
                 <div key={index} className="card">
                   <p><strong>Nombre de Canción:</strong> {album.nombre}</p>
