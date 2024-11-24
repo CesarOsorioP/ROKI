@@ -8,7 +8,7 @@ const Search = () => {
   const [artists, setArtists] = useState([]); // Estado para artistas
   const [users, setUsers] = useState([]); // Estado para usuarios
   const [songs, setSongs] = useState([]); // Estado para canciones
-  const [albums, setAlbums] = useState([]); // Estado para canciones
+  const [albums, setAlbums] = useState([]); // Estado para álbumes
   const [error, setError] = useState(null); // Estado para errores
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -19,18 +19,17 @@ const Search = () => {
       try {
         // Realizar llamadas a las APIs
         const artistsPromise = fetch(
-          "http://localhost:5000/api/artists/explore?search=${query}"
+          `http://localhost:5000/api/artists/explore?search=${query}`
         );
         const usersPromise = fetch(
-          "http://localhost:5000/api/admin/explore?search=${query}"
+          `http://localhost:5000/api/admin/explore?search=${query}`
         );
         const songPromise = fetch(
-          "http://localhost:5000/api/songs/explore?search=${query}"
+          `http://localhost:5000/api/songs/explore?search=${query}`
         );
         const albumPromise = fetch(
-          "http://localhost:5000/api/albums/explore?search=${query}"
+          `http://localhost:5000/api/albums/explore?search=${query}`
         );
-
 
         const [artistsResponse, usersResponse, songResponse, albumResponse] = await Promise.all([
           artistsPromise,
@@ -108,21 +107,21 @@ const Search = () => {
               ))}
             </div>
           )}
+
+          {/* Renderizar sección de álbumes */}
           {albums.length > 0 && (
             <div className="minidiv">
-              <h3>Albumes</h3>
-              console.log(albums)
+              <h3>Álbumes</h3>
               {albums.map((album, index) => (
                 <div key={index} className="minidiv">
-                  <p><strong>Nombre de Canción:</strong> {album.nombre}</p>
-                  
+                  <p><strong>Nombre del Álbum:</strong> {album.nombre}</p>
                 </div>
               ))}
             </div>
           )}
 
           {/* Mostrar mensaje si no hay resultados */}
-          {artists.length === 0 && users.length === 0 && songs.length === 0 && !error && (
+          {artists.length === 0 && users.length === 0 && songs.length === 0 && albums.length === 0 && !error && (
             <p>No se encontraron resultados.</p>
           )}
         </div>
