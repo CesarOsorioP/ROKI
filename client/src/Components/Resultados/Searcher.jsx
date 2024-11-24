@@ -73,7 +73,7 @@ const Search = () => {
         <div className="grid">
           {/* Renderizar sección de resultados */}
           {artists.length > 0 && (
-            <div>
+            <div className="minidiv">
               <h3>Artistas</h3>
               {artists.map((artist, index) => (
                 <div key={index} className="card">
@@ -86,7 +86,7 @@ const Search = () => {
 
           {/* Renderizar sección de usuarios */}
           {users.length > 0 && (
-            <div>
+            <div className="minidiv">
               <h3>Usuarios</h3>
               {users.map((user, index) => (
                 <div key={index} className="card">
@@ -99,7 +99,7 @@ const Search = () => {
 
           {/* Renderizar sección de canciones */}
           {songs.length > 0 && (
-            <div>
+            <div className="minidiv">
               <h3>Canciones</h3>
               {songs.map((song, index) => (
                 <div key={index} className="card">
@@ -110,7 +110,7 @@ const Search = () => {
             </div>
           )}
           {albums.length > 0 && (
-            <div>
+            <div className="minidiv">
               <h3>Albumes</h3>
               console.log(albums)
               {albums.map((album, index) => (
