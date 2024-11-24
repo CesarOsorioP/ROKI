@@ -19,16 +19,16 @@ const Search = () => {
       try {
         // Realizar llamadas a las APIs
         const artistsPromise = fetch(
-          http://localhost:5000/api/artists/explore?search=${query}
+          "http://localhost:5000/api/artists/explore?search=${query}"
         );
         const usersPromise = fetch(
-          http://localhost:5000/api/admin/explore?search=${query}
+          "http://localhost:5000/api/admin/explore?search=${query}"
         );
         const songPromise = fetch(
-          http://localhost:5000/api/songs/explore?search=${query}
+          "http://localhost:5000/api/songs/explore?search=${query}"
         );
         const albumPromise = fetch(
-          http://localhost:5000/api/albums/explore?search=${query}
+          "http://localhost:5000/api/albums/explore?search=${query}"
         );
 
 
