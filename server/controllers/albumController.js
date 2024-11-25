@@ -33,4 +33,30 @@ const getAlbumsByArtist = async (req, res) => {
   }
 };
 
-module.exports = { searchAlbums, getAlbumsByArtist };
+// Nueva función para obtener todos los álbumes
+const getAlbums = async (req, res) => {
+  try {
+    const albums = await Album.find().populate('artista_id', 'nombre_artistico');
+    res.json(albums);
+  } catch (error) {
+    console.error("Error in getAlbums:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Nueva función para obtener un álbum por su ID
+const getAlbumById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const album = await Album.findById(id).populate('artista_id', 'nombre_artistico');
+    if (!album) {
+      return res.status(404).json({ message: "Album not found" });
+    }
+    res.json(album);
+  } catch (error) {
+    console.error("Error in getAlbumById:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+module.exports = { searchAlbums, getAlbumsByArtist, getAlbums, getAlbumById };

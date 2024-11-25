@@ -15,11 +15,10 @@ import CreateArtist from './Pages/CreateArtist'; // Página para crear artistas
 import CreateUser from './Pages/CreateUser'; // Página para crear usuarios
 import UploadAlbum from './Pages/UploadAlbum';
 import UploadSong from './Pages/UploadSong';
-import AlbumGrid from './Components/Reproductor/AlbumGrid';
-import Album from './Pages/Album';
+import Album from './Pages/Album'; // Importa la página Album
+import AlbumDetail from './Pages/AlbumDetail'; // Importa el componente AlbumDetail
 import PlayList from './Pages/Playlist';
 import Canciones from './Pages/Canciones'; // Importación correcta de Canciones
-
 
 function App() {
   return (
@@ -34,9 +33,7 @@ function App() {
           <Route path="/user" element={<UserInfo />} />
           <Route path="/forgot-password" element={<RecuperatePage />} />
           <Route path="/recuperar" element={<RecuperatePage2 />} />
-          <Route path="/albumes" element={<AlbumGrid />} /> {/* Muestra el grid de álbumes */}
           <Route path="/canciones" element={<Canciones />} /> {/* Muestra la lista de canciones */}
-          <Route path="/albumes/:albumName" element={<Album />} /> {/* Detalle de cada álbum */}
           <Route path="/explore" element={<ResultsPage />} />
           {/* Rutas de administración */}
           <Route path="/admin/create" element={<CreateAdmin />} />
@@ -47,7 +44,9 @@ function App() {
           <Route path="/artist/upload-song" element={<UploadSong />} />
           {/* Rutas de gestión de usuarios */}
           <Route path="/user/create" element={<CreateUser />} />
-          <Route path="/Playlist" element={<PlayList />} />
+          <Route path="/playlist" element={<PlayList />} />
+          <Route path="/albumes" element={<Album />} /> {/* Importa la página Album */}
+          <Route path="/album/:id" element={<AlbumDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

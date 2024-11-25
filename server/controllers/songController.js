@@ -1,5 +1,21 @@
 const Song = require('../models/Song');
 
+// Controlador para obtener todas las canciones de un álbum
+const getSongsByAlbum = async (req, res) => {
+  try {
+    const { albumId } = req.params;
+    if (!albumId) {
+      return res.status(400).json({ message: "Album ID is required" });
+    }
+
+    const songs = await Song.find({ album_id: albumId }).populate('artista_id', 'nombre_artistico');
+    res.json(songs);
+  } catch (error) {
+    console.error("Error in getSongsByAlbum:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 // Controlador para obtener todas las canciones
 const getAllSongs = async (req, res) => {
   try {
@@ -30,4 +46,4 @@ const searchSong = async (req, res) => {
   }
 };
 
-module.exports = { searchSong, getAllSongs };
+module.exports = { searchSong, getAllSongs, getSongsByAlbum };

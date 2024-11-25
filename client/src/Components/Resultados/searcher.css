@@ -1,54 +1,61 @@
-.divprime{
-    margin: 30px;
-    padding: 20px;
-    max-width: 600px;
-    max-height: auto;
-   
-  }
+.divprime {
+  margin: 20px auto; /* Centra el contenedor horizontalmente */
+  padding: 20px;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
 
-  .minidiv{
-    margin: 20px;
-    padding: 10px;
-    }
-  
-  .minidiv{
-    margin: 20px;
-    padding: 10px;
-    }
+  box-sizing: border-box; /* Asegura que los bordes y padding no se sumen al tamaño total */
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.section {
+  background-color: black;
+  color: white;
+  padding: var(--spacing-3);
+  border: 1px solid white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.3);
+  flex: 1 1 calc(25% - 20px); /* Asegura que cada sección ocupe una cuarta parte del ancho */
+  max-width: 100%; /* No excede el ancho del contenedor */
+}
+
+.card {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.3);
+}
 
 .title h2 {
-    color: white;
-  }
-  
-  .input {
-    background-color: #212121;
-    max-width: 190px;
-    min-height: 15px;
-    padding: 10px;
-    /* text-align: center; */
-    border: 2px solid white;
-    border-radius: 5px;
-    /* box-shadow: 3px 3px 2px rgb(249, 255, 85); */
-  }
-  
-  .input:focus {
-    color: rgb(0, 255, 255);
-    background-color: #212121;
-    outline-color: rgb(0, 255, 255);
-    box-shadow: -3px -3px 15px rgb(0, 255, 255);
-    transition: .1s;
-    transition-property: box-shadow;
-  }
+  color: white;
+}
 
-  .split {
-    display: grid;
-    grid-template-columns: 4fr 2fr;
-    gap: 45px;
-  }
-  
-  .split input {
-    width: 100%;
-  }
+.input {
+  background-color: #212121;
+  max-width: 190px;
+  min-height: 15px;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+}
 
+.input:focus {
+  color: rgb(0, 255, 255);
+  background-color: #212121;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: .1s;
+  transition-property: box-shadow;
+}
 
-  
+.error {
+  color: red;
+  font-weight: bold;
+}

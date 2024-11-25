@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { searchSong, getAllSongs } = require('../controllers/songController'); // Asegúrate de importar el controlador correcto
+const { searchSong, getAllSongs, getSongsByAlbum } = require('../controllers/songController');
 
-// Ruta para buscar canciones
 router.get('/explore', searchSong);
-
-// Ruta para obtener todas las canciones
 router.get('/', getAllSongs);
+router.get('/album/:albumId', getSongsByAlbum); // Nueva ruta para obtener canciones por álbum
 
 module.exports = router;
