@@ -7,6 +7,15 @@ const Signup = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Lógica del botón de regresar
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1); // Retrocede a la página anterior si hay historial
+    } else {
+      navigate('/'); // Redirige a la página principal si no hay historial
+    }
+  };
+
   const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
@@ -32,26 +41,28 @@ const Signup = () => {
 
   return (
     <div className='registro-page'>
-       <div className="top-bar">
+      {/* Botón de regresar */}
+      <button onClick={handleBack} className="back-button">&#8592; Regresar</button>
+      
+      <div className="top-bar">
         <span className="logo">R O K I</span>
         <a href="/pagos" className="roki-plus-link">Obtiene Roki plus</a>
       </div>
 
-
       <div className='registro-container'>
-      <h2>Regístrate ahora en Roki!</h2>
-      <p>¿Ya tienes una cuenta? <a href="/login" className="yellow-text">Conéctate</a>.</p>
-      <h2>Registro</h2>
+        <h2>Regístrate ahora en Roki!</h2>
+        <p>¿Ya tienes una cuenta? <a href="/login" className="yellow-text">Conéctate</a>.</p>
+        <h2>Registro</h2>
 
-      <form className="signup-form" onSubmit={handleSubmit}>
-      <h3 class = "text-align">Nombre de usuario</h3>
-        <input name="username" type="text" placeholder="Usuario" onChange={onChange} required />
-        <h3 class = "text-align">Email</h3>
-        <input name="email" type="email" placeholder="Correo" onChange={onChange} required />
-        <h3 class = "text-align">Contraseña</h3>
-        <input name="password" type="password" placeholder="Contraseña" onChange={onChange} required />
-        <button type="submit">Registrarse</button>
-      </form>
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <h3 className="text-align">Nombre de usuario</h3>
+          <input name="username" type="text" placeholder="Usuario" onChange={onChange} required />
+          <h3 className="text-align">Email</h3>
+          <input name="email" type="email" placeholder="Correo" onChange={onChange} required />
+          <h3 className="text-align">Contraseña</h3>
+          <input name="password" type="password" placeholder="Contraseña" onChange={onChange} required />
+          <button type="submit">Registrarse</button>
+        </form>
       </div>
       {error && <p>{error}</p>}
     </div>
