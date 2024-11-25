@@ -76,10 +76,10 @@ const Search = () => {
         <div className="grid">
           {/* Renderizar sección de resultados */}
           {artists.length > 0 && (
-            <div className="section">
+            <div className="minidiv">
               <h3>Artistas</h3>
               {artists.map((artist, index) => (
-                <div key={index} className="card">
+                <div key={index} className="minidiv">
                   <p><strong>Nombre Artístico:</strong> {artist.nombre_artistico}</p>
                 </div>
               ))}
@@ -88,10 +88,10 @@ const Search = () => {
 
           {/* Renderizar sección de usuarios */}
           {users.length > 0 && (
-            <div className="section">
+            <div className="minidiv">
               <h3>Usuarios</h3>
               {users.map((user, index) => (
-                <div key={index} className="card">
+                <div key={index} className="minidiv">
                   <p><strong>Usuario:</strong> {user.username}</p>
                 </div>
               ))}
@@ -100,11 +100,12 @@ const Search = () => {
 
           {/* Renderizar sección de canciones */}
           {songs.length > 0 && (
-            <div className="section">
+            <div className="minidiv">
               <h3>Canciones</h3>
               {songs.map((song, index) => (
-                <div key={index} className="card">
+                <div key={index} className="minidiv">
                   <p><strong>Nombre de Canción:</strong> {song.nombre}</p>
+                  
                 </div>
               ))}
             </div>
@@ -112,10 +113,10 @@ const Search = () => {
 
           {/* Renderizar sección de álbumes */}
           {albums.length > 0 && (
-            <div className="section">
+            <div className="minidiv">
               <h3>Álbumes</h3>
               {albums.map((album, index) => (
-                <div key={index} className="card">
+                <div key={index} className="minidiv">
                   <p><strong>Nombre del Álbum:</strong> {album.nombre}</p>
                 </div>
               ))}
