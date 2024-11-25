@@ -83,6 +83,7 @@ const Search = () => {
           <h2>Resultados que concuerden con: {query}</h2>
         </div>
         {error && <p className="error">{error}</p>}
+<<<<<<< HEAD
         <div className="splitsearcher">
           <div className="grid">
             <ResultSection title="Artistas" data={artists} label="Nombre Artístico" field="nombre_artistico" />
@@ -94,6 +95,63 @@ const Search = () => {
               <p>No se encontraron resultados.</p>
             )}
           </div>
+=======
+        <div className="grid">
+          {/* Renderizar sección de resultados */}
+          {artists.length > 0 && (
+            <div className="minidiv">
+              <h3>Artistas</h3>
+              {artists.map((artist, index) => (
+                <div key={index} className="minidiv">
+                  <p><strong>Nombre Artístico:</strong> {artist.nombre_artistico}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Renderizar sección de usuarios */}
+          {users.length > 0 && (
+            <div className="minidiv">
+              <h3>Usuarios</h3>
+              {users.map((user, index) => (
+                <div key={index} className="minidiv">
+                  <p><strong>Usuario:</strong> {user.username}</p>
+                  <p><strong>Email:</strong> {user.email || "No disponible"}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Renderizar sección de canciones */}
+          {songs.length > 0 && (
+            <div className="minidiv">
+              <h3>Canciones</h3>
+              {songs.map((song, index) => (
+                <div key={index} className="minidiv">
+                  <p><strong>Nombre de Canción:</strong> {song.nombre}</p>
+                  
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Renderizar sección de álbumes */}
+          {albums.length > 0 && (
+            <div className="minidiv">
+              <h3>Álbumes</h3>
+              {albums.map((album, index) => (
+                <div key={index} className="minidiv">
+                  <p><strong>Nombre del Álbum:</strong> {album.nombre}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Mostrar mensaje si no hay resultados */}
+          {artists.length === 0 && users.length === 0 && songs.length === 0 && albums.length === 0 && !error && (
+            <p>No se encontraron resultados.</p>
+          )}
+>>>>>>> 60549a14461f5132207fd5085d7ef1a410c2b58f
         </div>
       </div>
     </Card>
