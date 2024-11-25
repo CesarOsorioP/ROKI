@@ -64,11 +64,15 @@ const Search = () => {
   return (
     <Card>
       <div className="divprime">
+        <div className="divprime">
         <SearcherComponent />
-        <div className="title">
-          <h2>Resultados que concuerden con: {query}</h2>
+          <div className="title">
+            <h2>Resultados que concuerden con: {query}</h2>
+          </div>
         </div>
+        <div className="splitsearcher">
         {error && <p className="error">{error}</p>}
+        
         <div className="grid">
           {/* Renderizar sección de resultados */}
           {artists.length > 0 && (
@@ -89,7 +93,6 @@ const Search = () => {
               {users.map((user, index) => (
                 <div key={index} className="card">
                   <p><strong>Usuario:</strong> {user.username}</p>
-                  <p><strong>Email:</strong> {user.email || "No disponible"}</p>
                 </div>
               ))}
             </div>
@@ -123,6 +126,7 @@ const Search = () => {
           {artists.length === 0 && users.length === 0 && songs.length === 0 && albums.length === 0 && !error && (
             <p>No se encontraron resultados.</p>
           )}
+        </div>
         </div>
       </div>
     </Card>
