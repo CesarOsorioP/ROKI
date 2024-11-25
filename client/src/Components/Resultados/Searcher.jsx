@@ -4,20 +4,6 @@ import Card from "../Pagos/card.jsx";
 import "./searcher.css";
 import SearcherComponent from "./searcherinput.jsx";
 
-// Componente para renderizar secciones de resultados
-const ResultSection = ({ title, data, label, field }) => {
-  return data.length > 0 ? (
-    <div className="minidiv">
-      <h3>{title}</h3>
-      {data.map((item) => (
-        <div key={item[field]} className="minidiv">
-          <p><strong>{label}:</strong> {item[field]}</p>
-        </div>
-      ))}
-    </div>
-  ) : null;
-};
-
 const Search = () => {
   const [artists, setArtists] = useState([]); // Estado para artistas
   const [users, setUsers] = useState([]); // Estado para usuarios
@@ -78,24 +64,15 @@ const Search = () => {
   return (
     <Card>
       <div className="divprime">
+        <div className="divprime">
         <SearcherComponent />
-        <div className="title">
-          <h2>Resultados que concuerden con: {query}</h2>
-        </div>
-        {error && <p className="error">{error}</p>}
-<<<<<<< HEAD
-        <div className="splitsearcher">
-          <div className="grid">
-            <ResultSection title="Artistas" data={artists} label="Nombre Artístico" field="nombre_artistico" />
-            <ResultSection title="Usuarios" data={users} label="Usuario" field="username" />
-            <ResultSection title="Canciones" data={songs} label="Nombre de Canción" field="nombre" />
-            <ResultSection title="Álbumes" data={albums} label="Nombre del Álbum" field="nombre" />
-            {/* Mostrar mensaje si no hay resultados */}
-            {artists.length === 0 && users.length === 0 && songs.length === 0 && albums.length === 0 && !error && (
-              <p>No se encontraron resultados.</p>
-            )}
+          <div className="title">
+            <h2>Resultados que concuerden con: {query}</h2>
           </div>
-=======
+        </div>
+        <div className="splitsearcher">
+        {error && <p className="error">{error}</p>}
+        
         <div className="grid">
           {/* Renderizar sección de resultados */}
           {artists.length > 0 && (
@@ -116,7 +93,6 @@ const Search = () => {
               {users.map((user, index) => (
                 <div key={index} className="minidiv">
                   <p><strong>Usuario:</strong> {user.username}</p>
-                  <p><strong>Email:</strong> {user.email || "No disponible"}</p>
                 </div>
               ))}
             </div>
@@ -151,7 +127,7 @@ const Search = () => {
           {artists.length === 0 && users.length === 0 && songs.length === 0 && albums.length === 0 && !error && (
             <p>No se encontraron resultados.</p>
           )}
->>>>>>> 60549a14461f5132207fd5085d7ef1a410c2b58f
+        </div>
         </div>
       </div>
     </Card>
