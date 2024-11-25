@@ -8,32 +8,33 @@ function Login() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    const handleBack = () => {
+        navigate(-1); // Retroceder a la página anterior
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await fetch('http://localhost:5000/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }), // Enviar credenciales
+                body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                const { token, username, userType, artistId } = data; // Asegúrate de obtener artistId
-                localStorage.setItem('token', token); // Guardar el token en localStorage
+                const { token, username, userType, artistId } = data;
+                localStorage.setItem('token', token);
                 localStorage.setItem('username', username);
                 localStorage.setItem('userType', userType);
 
-                // Guardar el artistId en localStorage si el usuario es un artista
                 if (userType === 'artista') {
                     localStorage.setItem('artistId', artistId);
                 }
 
-                // Redirigir según el tipo de usuario
                 navigate(userType === 'administrador' ? '/reproductor' : '/reproductor');
             } else {
                 setError(data.msg || 'Error desconocido en el inicio de sesión');
@@ -46,6 +47,9 @@ function Login() {
 
     return (
         <div className="login-container">
+            <button onClick={handleBack} className="back-button">
+                &#8592; Regresar
+            </button>
             <h2>INICIAR SESIÓN</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form className="login-form" onSubmit={handleSubmit}>
@@ -65,7 +69,6 @@ function Login() {
                 />
                 <button type="submit">Iniciar Sesión</button>
             </form>
-            {error && <p className="error">{error}</p>}
             <div className="forgot-password">
                 <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
             </div>
@@ -77,3 +80,4 @@ function Login() {
 }
 
 export default Login;
+
