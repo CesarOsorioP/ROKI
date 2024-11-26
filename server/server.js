@@ -22,6 +22,7 @@ app.use('/api/upload', require('./routes/uploadRoutes')); // Subidas de archivos
 app.use('/api/artists', require('./routes/artistRoutes'));
 app.use('/api/songs', require('./routes/songRoutes'));
 app.use('/api/albums', require('./routes/albumRoutes'));
+app.use('/api/player', require('./routes/playerRoutes'));
 
 
 // Configuración del puerto

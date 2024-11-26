@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { PlayerProvider } from './Context/PlayerContext'; // Importa el contexto del reproductor
 import LandingPage from './Pages/LandingPage';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
@@ -19,37 +20,41 @@ import Album from './Pages/Album'; // Importa la página Album
 import AlbumDetail from './Pages/AlbumDetail'; // Importa el componente AlbumDetail
 import PlayList from './Pages/Playlist';
 import Canciones from './Pages/Canciones'; // Importación correcta de Canciones
+import Player from './Components/Reproductor/Player'; // Importa el componente Player
 
 function App() {
   return (
-    <div className='main-content'>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/reproductor" element={<Reproductor />} />
-          <Route path="/pagos" element={<Pagospage />} />
-          <Route path="/user" element={<UserInfo />} />
-          <Route path="/forgot-password" element={<RecuperatePage />} />
-          <Route path="/recuperar" element={<RecuperatePage2 />} />
-          <Route path="/canciones" element={<Canciones />} /> {/* Muestra la lista de canciones */}
-          <Route path="/explore" element={<ResultsPage />} />
-          {/* Rutas de administración */}
-          <Route path="/admin/create" element={<CreateAdmin />} />
-          {/* Rutas de gestión de artistas */}
-          <Route path="/artist" element={<ArtistInfo />} />
-          <Route path="/artist/create" element={<CreateArtist />} />
-          <Route path="/artist/upload-album" element={<UploadAlbum />} />
-          <Route path="/artist/upload-song" element={<UploadSong />} />
-          {/* Rutas de gestión de usuarios */}
-          <Route path="/user/create" element={<CreateUser />} />
-          <Route path="/playlist" element={<PlayList />} />
-          <Route path="/albumes" element={<Album />} /> {/* Importa la página Album */}
-          <Route path="/album/:id" element={<AlbumDetail />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <PlayerProvider>
+      <div className='main-content'>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/reproductor" element={<Reproductor />} />
+            <Route path="/pagos" element={<Pagospage />} />
+            <Route path="/user" element={<UserInfo />} />
+            <Route path="/forgot-password" element={<RecuperatePage />} />
+            <Route path="/recuperar" element={<RecuperatePage2 />} />
+            <Route path="/canciones" element={<Canciones />} /> {/* Muestra la lista de canciones */}
+            <Route path="/explore" element={<ResultsPage />} />
+            {/* Rutas de administración */}
+            <Route path="/admin/create" element={<CreateAdmin />} />
+            {/* Rutas de gestión de artistas */}
+            <Route path="/artist" element={<ArtistInfo />} />
+            <Route path="/artist/create" element={<CreateArtist />} />
+            <Route path="/artist/upload-album" element={<UploadAlbum />} />
+            <Route path="/artist/upload-song" element={<UploadSong />} />
+            {/* Rutas de gestión de usuarios */}
+            <Route path="/user/create" element={<CreateUser />} />
+            <Route path="/playlist" element={<PlayList />} />
+            <Route path="/albumes" element={<Album />} /> {/* Importa la página Album */}
+            <Route path="/album/:id" element={<AlbumDetail />} />
+          </Routes>
+          <Player /> {/* Asegura que el reproductor esté siempre visible */}
+        </BrowserRouter>
+      </div>
+    </PlayerProvider>
   );
 }
 

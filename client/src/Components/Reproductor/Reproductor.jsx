@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 
-import PlayerControl from './PlayerControl';
+
 import './Reproductor.css';
 
 function Reproductor() {
@@ -11,7 +11,7 @@ function Reproductor() {
       <div className="content">
         
       </div>
-      <PlayerControl />
+    
     </div>
   );
 }
