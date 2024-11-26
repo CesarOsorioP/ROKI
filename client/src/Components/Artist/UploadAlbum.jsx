@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './UploadAlbum.css';
 
 function UploadAlbum() {
   const [formData, setFormData] = useState({
@@ -48,13 +49,45 @@ function UploadAlbum() {
   };
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <input type="text" name="nombre" placeholder="Nombre" onChange={handleChange} />
-      <input type="text" name="genero" placeholder="Género" onChange={handleChange} />
-      <input type="date" name="fecha_publicacion" placeholder="Fecha de Publicación" onChange={handleChange} />
-      <input type="file" name="imagen" accept="image/*" onChange={handleChange} />
-      <button type="submit">Subir Álbum</button>
-    </form>
+    <div className="upload-album-container">
+      <form onSubmit={handleSubmit} className="upload-album-form" encType="multipart/form-data">
+        <h2 className="upload-album-title">Crear álbum</h2>
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Nombre del álbum"
+          onChange={handleChange}
+          className="form-input"
+        />
+        <input
+          type="text"
+          name="genero"
+          placeholder="Género"
+          onChange={handleChange}
+          className="form-input"
+        />
+        <input
+          type="date"
+          name="fecha_publicacion"
+          onChange={handleChange}
+          className="form-input"
+        />
+        <div className="file-upload-container">
+          <label htmlFor="imagen" className="file-label">
+            Subir imagen
+          </label>
+          <input
+            type="file"
+            id="imagen"
+            name="imagen"
+            accept="image/*"
+            onChange={handleChange}
+            className="file-input"
+          />
+        </div>
+        <button type="submit" className="submit-btn">Crear</button>
+      </form>
+    </div>
   );
 }
 

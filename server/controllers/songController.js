@@ -46,4 +46,45 @@ const searchSong = async (req, res) => {
   }
 };
 
-module.exports = { searchSong, getAllSongs, getSongsByAlbum };
+const getSongsByArtist = async (req, res) => {
+  try {
+    const { artistId } = req.params; // Obtener el artistId desde los parámetros de la URL
+    if (!artistId) {
+      return res.status(400).json({ message: "Artist ID is required" });
+    }
+
+    const songs = await Song.find({ artista_id: artistId }) // Filtrar canciones por artistId
+      .populate('artista_id', 'nombre_artistico'); // Obtener los detalles del artista si es necesario
+
+    res.json(songs);
+  } catch (error) {
+    console.error("Error in getSongsByArtist:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
+const deleteSong = async (req, res) => {
+  try {
+    const { id } = req.params; // ID de la canción enviada como parámetro en la ruta
+
+    const song = await Song.findById(id); 
+
+    if (!song) {
+      return res.status(404).json({ message: 'La canción no existe.' });
+    }
+
+    // Eliminar la canción utilizando deleteOne()
+    await Song.deleteOne({ _id: id });
+
+    res.status(200).json({ message: 'Canción eliminada exitosamente.' });
+  } catch (error) {
+    console.error('Error eliminando canción:', error);
+    res.status(500).json({ message: 'Error interno del servidor.' });
+  }
+};
+
+
+
+module.exports = { searchSong, getAllSongs, getSongsByAlbum, deleteSong, getSongsByArtist };

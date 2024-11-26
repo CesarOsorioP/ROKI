@@ -52,7 +52,6 @@ const Signup = () => {
       <div className='registro-container'>
         <h2>Regístrate ahora en Roki!</h2>
         <p>¿Ya tienes una cuenta? <a href="/login" className="yellow-text">Conéctate</a>.</p>
-        <h2>Registro</h2>
 
         <form className="signup-form" onSubmit={handleSubmit}>
           <h3 className="text-align">Nombre de usuario</h3>

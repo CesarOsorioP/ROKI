@@ -9,7 +9,7 @@ function Login() {
     const navigate = useNavigate();
 
     const handleBack = () => {
-        navigate(-1); // Retroceder a la página anterior
+        navigate('/'); // ir a la landing page
     };
 
     const handleSubmit = async (e) => {
