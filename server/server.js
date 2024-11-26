@@ -23,7 +23,8 @@ app.use('/api/artists', require('./routes/artistRoutes'));
 app.use('/api/songs', require('./routes/songRoutes'));
 app.use('/api/albums', require('./routes/albumRoutes'));
 app.use('/api/player', require('./routes/playerRoutes'));
-
+app.use('/api/playlists', require('./routes/playlistRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
 
 // Configuración del puerto
 const PORT = process.env.PORT || 5000;

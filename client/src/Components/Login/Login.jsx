@@ -26,10 +26,11 @@ function Login() {
             const data = await response.json();
 
             if (response.ok) {
-                const { token, username, userType, artistId } = data;
+                const { token, username, userType, userId, artistId } = data;
                 localStorage.setItem('token', token);
                 localStorage.setItem('username', username);
                 localStorage.setItem('userType', userType);
+                localStorage.setItem('userId', userId); // Almacenar el userId en el local storage
 
                 if (userType === 'artista') {
                     localStorage.setItem('artistId', artistId);
@@ -80,4 +81,3 @@ function Login() {
 }
 
 export default Login;
-

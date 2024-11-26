@@ -32,7 +32,6 @@ exports.login = async (req, res) => {
       return res.status(400).json({ msg: 'Credenciales incorrectas' });
     }
 
-    // Almacena el artistId en localStorage solo si el usuario es un artista
     const token = jwt.sign({ id: user._id, userType }, 'tu_secreto', { expiresIn: '1h' });
 
     // Responde con el token y otros detalles relevantes
@@ -40,6 +39,7 @@ exports.login = async (req, res) => {
       token,
       username: name,
       userType,
+      userId: user._id, // Incluye userId en la respuesta
       artistId: userType === 'artista' ? user._id : null // Retorna el ID del artista si es relevante
     });
   } catch (error) {
@@ -67,5 +67,3 @@ exports.signup = async (req, res) => {
     res.status(500).json({ msg: 'Error del servidor' });
   }
 };
-
-

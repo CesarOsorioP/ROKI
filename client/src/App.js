@@ -21,6 +21,8 @@ import AlbumDetail from './Pages/AlbumDetail'; // Importa el componente AlbumDet
 import PlayList from './Pages/Playlist';
 import Canciones from './Pages/Canciones'; // Importación correcta de Canciones
 import Player from './Components/Reproductor/Player'; // Importa el componente Player
+import CreatePlaylistPage from './Pages/CreatePlaylistPage'; // Importa la nueva página de CreatePlaylist
+import SongsPage from './Pages/SongsPage'; // Importa la página de Songs
 
 function App() {
   return (
@@ -47,9 +49,11 @@ function App() {
             <Route path="/artist/upload-song" element={<UploadSong />} />
             {/* Rutas de gestión de usuarios */}
             <Route path="/user/create" element={<CreateUser />} />
-            <Route path="/playlist" element={<PlayList />} />
+            <Route path="/playlist" element={<PlayList />} /> {/* Ruta para ver las playlists del usuario */}
             <Route path="/albumes" element={<Album />} /> {/* Importa la página Album */}
             <Route path="/album/:id" element={<AlbumDetail />} />
+            <Route path="/create-playlist" element={<CreatePlaylistPage />} /> {/* Nueva ruta para crear playlist */}
+            <Route path="/songs" element={<SongsPage />} /> {/* Nueva ruta para la página de canciones */}
           </Routes>
           <Player /> {/* Asegura que el reproductor esté siempre visible */}
         </BrowserRouter>

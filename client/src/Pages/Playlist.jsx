@@ -1,16 +1,12 @@
-import React from 'react'
-import Playlist from '../Components/Playlist/Playlist'
-import Sidebar from '../Components/Playlist/Sidebar';
-import MainContent from '../Components/Playlist/MainContent';
+import React from 'react';
+import UserPlaylists from '../Components/Playlist/UserPlaylists';
 
 function PlayList() {
-    return (
+  return (
     <div>
-        <Playlist/>
-        <MainContent/>
-        <Sidebar/>
+      <UserPlaylists />
     </div>
-    );
+  );
 }
 
 export default PlayList;

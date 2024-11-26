@@ -1,14 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { PlayerContext } from '../../Context/PlayerContext'; // Importa el contexto del reproductor
-import './AlbumDetail.css'; // Importa el archivo CSS
+import { PlayerContext } from '../../Context/PlayerContext';
+import './AlbumDetail.css';
+import LikeButton from './LikeButton';
+import { FaPlay } from 'react-icons/fa';
 
 const AlbumDetail = () => {
   const { id } = useParams();
   const [album, setAlbum] = useState(null);
   const [songs, setSongs] = useState([]);
-  const { playSong, setQueue } = useContext(PlayerContext); // Usa el contexto del reproductor
+  const { playSong, setQueue } = useContext(PlayerContext);
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchAlbum = async () => {
@@ -38,7 +41,7 @@ const AlbumDetail = () => {
   }
 
   const handlePlaySong = (song, index) => {
-    setQueue(songs, index); // Establece la cola de canciones y el índice actual
+    setQueue(songs, index);
     playSong(song);
   };
 
@@ -55,13 +58,18 @@ const AlbumDetail = () => {
         <h2>Canciones</h2>
         {songs.map((song, index) => (
           <div key={song._id} className="song-item">
-            <h3>{song.nombre}</h3>
-            <button onClick={() => handlePlaySong(song, index)}>Reproducir</button>
+            <div className="song-info">
+              <h3>{song.nombre}</h3>
+            </div>
+            <button className="play-button" onClick={() => handlePlaySong(song, index)}>
+              <FaPlay />
+            </button>
+            <LikeButton userId={userId} songId={song._id} />
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default AlbumDetail;
