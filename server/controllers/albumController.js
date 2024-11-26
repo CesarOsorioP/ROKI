@@ -59,4 +59,26 @@ const getAlbumById = async (req, res) => {
   }
 };
 
-module.exports = { searchAlbums, getAlbumsByArtist, getAlbums, getAlbumById };
+const deleteAlbum = async (req, res) => {
+  try {
+    const { id } = req.params; // ID del álbum enviado como parámetro en la ruta
+    console.log('ID del álbum recibido:', id);
+
+    // Buscar el álbum en la base de datos por su ID
+    const album = await Album.findById(id); 
+
+    if (!album) {
+      return res.status(404).json({ message: 'El álbum no existe.' });
+    }
+
+    // Eliminar el álbum utilizando deleteOne()
+    await Album.deleteOne({ _id: id });
+
+    res.status(200).json({ message: 'Álbum eliminado exitosamente.' });
+  } catch (error) {
+    console.error('Error eliminando álbum:', error);
+    res.status(500).json({ message: 'Error interno del servidor.' });
+  }
+};
+
+module.exports = { searchAlbums, getAlbumsByArtist, getAlbums, getAlbumById, deleteAlbum};

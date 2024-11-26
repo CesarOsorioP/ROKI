@@ -26,7 +26,11 @@ const Albumes = () => {
         {albums.map(album => (
           <div key={album._id} className="album-item">
             <Link to={`/album/${album._id}`}>
-              <img src={`http://localhost:5000/uploads/${album.imagen_portada}`} alt={album.nombre} className="album-image" />
+              <img 
+                src={`http://localhost:5000/uploads/${album.imagen_portada}`} 
+                alt={album.nombre} 
+                className="album-image" 
+              />
               <h3>{album.nombre}</h3>
               <p>{album.artista_id.nombre_artistico}</p>
             </Link>
@@ -35,6 +39,7 @@ const Albumes = () => {
       </div>
     </div>
   );
+  
 }
 
 export default Albumes;
