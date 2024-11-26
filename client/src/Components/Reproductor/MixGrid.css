@@ -3,7 +3,7 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 20px; /* Espacio entre los elementos reducido */
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     margin-left: 5%; /* Usar porcentaje en lugar de píxeles */
 }
 
