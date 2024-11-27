@@ -101,10 +101,34 @@ const likeSong = async (req, res) => {
   }
 };
 
+const deletePlaylist = async (req, res) => {
+  try {
+    const { playlistId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(playlistId)) {
+      return res.status(400).json({ message: 'Invalid playlist ID' });
+    }
+
+    const playlist = await Playlist.findById(playlistId);
+
+    if (!playlist) {
+      return res.status(404).json({ message: "Playlist not found" });
+    }
+
+    // Eliminar la playlist
+    await playlist.deleteOne();
+
+    res.json({ message: 'Playlist deleted successfully' });
+  } catch (error) {
+    console.error("Error deleting playlist:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 module.exports = {
   createPlaylist,
   getPublicPlaylists,
   getUserPlaylists,
   addSongToPlaylist,
-  likeSong
+  likeSong, deletePlaylist
 };
