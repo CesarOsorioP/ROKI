@@ -45,31 +45,36 @@ const AlbumDetail = () => {
     playSong(song);
   };
 
-  return (
-    <div className="album-detail-container">
-      <div className="album-header">
-        <img src={`http://localhost:5000/uploads/${album.imagen_portada}`} alt={album.nombre} className="album-image" />
-        <div className="album-details">
-          <h1>{album.nombre}</h1>
-          <p>{album.artista_id.nombre_artistico}</p>
-        </div>
+return (
+  <div className="album-main-container">
+    <div className="album-header">
+      <img
+        src={`http://localhost:5000/uploads/${album.imagen_portada}`}
+        alt={album.nombre}
+        className="album-image"
+      />
+      <div className="album-details">
+        <h1>{album.nombre}</h1>
+        <p>{album.artista_id.nombre_artistico}</p>
       </div>
-      <div className="songs-list">
-        <h2>Canciones</h2>
-        {songs.map((song, index) => (
-          <div key={song._id} className="song-item">
-            <div className="song-info">
-              <h3>{song.nombre}</h3>
-            </div>
+    </div>
+    <div className="songs-list-2">
+      <h2>Canciones</h2>
+      {songs.map((song, index) => (
+        <div key={song._id} className="song-item-2">
+          <div className="song-info">
             <button className="play-button" onClick={() => handlePlaySong(song, index)}>
               <FaPlay />
             </button>
-            <LikeButton userId={userId} songId={song._id} />
+            <h3>{song.nombre}</h3>
           </div>
-        ))}
-      </div>
+          <LikeButton userId={userId} songId={song._id} />
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
+ 
 };
 
 export default AlbumDetail;

@@ -139,7 +139,7 @@ function UploadAlbum() {
           ) : (
             <ul className="album-list">
               {albums.map((album) => (
-                <li key={album._id} className="album-item">
+                <li key={album._id} className="album-item-2">
                   <span>{album.nombre}</span>
                   <button className="delete-btn" onClick={() => handleDelete(album._id)}>
                     Eliminar

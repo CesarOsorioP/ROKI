@@ -1,22 +1,56 @@
 .songs-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
+  display: flex;
+  flex-wrap: nowrap; /* Evita que las canciones se envuelvan */
+  gap: 16px;
+  overflow-x: auto; /* Habilita el scroll horizontal si es necesario */
+  padding: 10px; /* Espaciado interno */
+  scrollbar-width: thin; /* Ajusta el ancho del scrollbar en Firefox */
+  scrollbar-color: #69d0ff transparent; /* Colores del scrollbar */
+  background-color: rgba(20, 20, 20, 0.95); /* Fondo semitransparente */
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  width: 165vh;
+  height: 70vh;
+}
+
+.songs-list::-webkit-scrollbar {
+  height: 8px; /* Ancho del scrollbar horizontal */
+}
+
+.songs-list::-webkit-scrollbar-thumb {
+  background-color: #69d0ff; /* Color del thumb */
+  border-radius: 4px;
+}
+
+.songs-list::-webkit-scrollbar-track {
+  background: transparent; /* Fondo del track del scrollbar */
+}
   
-  .song-item {
-    width: 300px;
-    border: 1px solid #413b3b;
-    padding: 16px;
-    border-radius: 8px;
-    text-align: center;
-    background-color: #494444a9;
-  }
+.song-item {
+  flex: 0 0 auto; /* Asegura que cada item mantenga su tamaño fijo */
+  width: 160vh; /* Ancho fijo para cada canción */
+  height: 20vh;
+  border: 1px solid #413b3b;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #494444a9;
+  box-sizing: border-box; /* Evita que el padding afecte el tamaño total */
+  transition: transform 0.3s ease; /* Transición suave al hover */
+}
+
+
+.song-item:hover {
+  transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
   
+
   .song-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 16px;
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   }
   

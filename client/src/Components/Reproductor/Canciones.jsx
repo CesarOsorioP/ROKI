@@ -1,12 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext} from 'react';
 import axios from 'axios';
 import './Canciones.css'; // Asegúrate de tener un archivo CSS para estilos
+import { FaPlay } from 'react-icons/fa';
+import { PlayerContext } from '../../Context/PlayerContext';
 
 const Canciones = () => {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const audioRefs = useRef([]);
+  const { playSong, setQueue } = useContext(PlayerContext);
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -36,6 +39,11 @@ const Canciones = () => {
     return <p>{error}</p>;
   }
 
+  const handlePlaySong = (song, index) => {
+    setQueue(songs, index);
+    playSong(song);
+  }
+
   return (
     <div>
       <h1>Canciones</h1>
@@ -53,21 +61,15 @@ const Canciones = () => {
               }}
             />
             {/* Nombre de la canción */}
-            <h3>{song.nombre}</h3>
+            <h2>{song.nombre}</h2>
             {/* Nombre del artista */}
             <p>{song.artista_id ? song.artista_id.nombre_artistico : 'Artista desconocido'}</p>
             {/* Botón para reproducir la canción */}
-            <button onClick={() => handlePlay(index)}>Reproducir</button>
+            <button className="play-button" onClick={() => handlePlaySong(song, index)}>
+              <FaPlay />
+            </button>
             {/* Reproductor de audio */}
-            <audio
-              controls
-              src={`http://localhost:5000/uploads/${song.enlace_cancion}`}
-              ref={(el) => (audioRefs.current[index] = el)}
-              onError={(e) => {
-                console.error('Error loading audio:', e);
-                alert('Hubo un problema al cargar esta canción.');
-              }}
-            ></audio>
+           
           </div>
         ))}
       </div>

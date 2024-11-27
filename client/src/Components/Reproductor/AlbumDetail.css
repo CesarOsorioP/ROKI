@@ -1,0 +1,160 @@
+
+/* Contenedor principal */
+.album-main-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 1420px; /* Ancho del contenedor */
+    max-width: 100%;
+    height: 70vh; /* Altura fija */
+    background-color: rgba(20, 20, 20, 0.95); /* Fondo semitransparente */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    margin-right: 5%;
+    margin-top: 3%;
+    gap: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+    scrollbar-width: thin; /* Ajusta el grosor del scrollbar (Firefox) */
+    scrollbar-color: #ebecec transparent;
+  }
+  
+  /* Ajusta el scrollbar para navegadores basados en WebKit */
+  .album-main-container::-webkit-scrollbar {
+    width: 10px; /* Ancho del scrollbar */
+  }
+  
+  .album-main-container::-webkit-scrollbar-track {
+    background: transparent; /* Fondo del track */
+  }
+  
+  .album-main-container::-webkit-scrollbar-thumb {
+    background-color: #69d0ff; /* Color del thumb */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  /* Encabezado del álbum */
+  .album-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Imagen del álbum */
+  .album-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Información del álbum */
+  .album-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .album-details h1 {
+    font-size: 1.8rem;
+    margin: 0 0 10px;
+  }
+  
+  .album-details p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin: 5px 0;
+  }
+  
+  /* Lista de canciones */
+  .songs-list-2 {
+    margin-top: 10px;
+    color: #ffffff;
+  }
+  
+  .songs-list h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  /* Estilo para cada canción */
+  .song-item-2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #494444a9;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    min-width: 1350px;
+  }
+  
+  
+  /* Información de la canción */
+  .song-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .song-info h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: #ffffff;
+  }
+  
+  /* Botón de reproducir */
+  .play-button {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .play-button:hover {
+    background-color: #158f3c;
+  }
+  
+  /* Ajustes responsivos */
+  @media (max-width: 768px) {
+    .album-main-container {
+      width: 90%; /* Reducir ancho en pantallas pequeñas */
+      margin-right: 5%;
+      margin-left: 5%;
+      margin-top: 2%;
+    }
+  
+    .album-header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .album-image {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .song-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+ 

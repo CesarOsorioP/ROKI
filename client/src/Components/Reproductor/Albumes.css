@@ -23,7 +23,7 @@
 
 /* Estilo de cada álbum */
 .album-item {
-    width: 250px; /* Tamaño fijo para los álbumes */
+    width: 180px; /* Tamaño fijo para los álbumes */
     background-color: #2d2d2d;
     border-radius: 10px;
     padding: 15px;

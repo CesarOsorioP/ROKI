@@ -109,7 +109,8 @@
   padding: 0;
 }
 
-.album-item {
+.album-item-2 {
+  width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
