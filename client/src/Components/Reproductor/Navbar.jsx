@@ -76,13 +76,12 @@ function Navbar() {
             <>
               <h2>GESTIÓN DE MÚSICA</h2>
               <li><Link to="/artist/upload-album"><FaPlus /> Álbumes</Link></li>
-              <li><Link to="/artist/upload-album"><FaPlus /> EPs</Link></li>
               <li><Link to="/artist/upload-song"><FaPlus /> Canciones</Link></li>
             </>
           )}
 
           <h2>LISTAS DE REPRODUCCIÓN</h2>
-          <li><Link to="/create"><FaPlus /> Crear...</Link></li>
+          <li><Link to="/create-playlist"><FaPlus /> Crear...</Link></li>
         </ul>
       )}
 

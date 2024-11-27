@@ -1,9 +1,6 @@
-.reproductor {
-    display: flex;
-  }
-  
+
   .content {
-    margin-left: 140px;
+
     flex-grow: 1;
     padding-bottom: 80px; /* Espacio para el reproductor */
     min-height: 10vh;
