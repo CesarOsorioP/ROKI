@@ -12,6 +12,8 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 
+
+
 // Servir la carpeta de uploads como estática
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

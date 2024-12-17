@@ -1,17 +1,28 @@
 import React from "react";
 import Card from "../Pagos/card.jsx";
 import "./recuperarContraseñacss.css";
-import { useNavigate } from 'react-router-dom';
 
 const RecuperarContraseña = () => {
-  const navigate = useNavigate(); // Hook para navegar
+  const handleForgotPassword = async () => {
+    const email = document.querySelector('input[name="email"]').value;
 
-  const handleClick = () => {
-    navigate(-1); // Navegar hacia atrás en el historial
-  };
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/forgot-password', { // Asegúrate de que esta URL es correcta
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
 
-  const handleClick2 = () => {
-    navigate("/recuperar"); // Navegar hacia atrás en el historial
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      alert(data.msg);
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      alert('Error al enviar el correo de recuperación.');
+    }
   };
 
   return (
@@ -19,36 +30,24 @@ const RecuperarContraseña = () => {
       <div className="divprime">
         <div className="split1">
           <div className="tittle">
-            <button className="back-button">
-              <svg height="16" width="16" viewBox="0 0 1024 1024">
-                <path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path>
-              </svg>
-              <span onClick={handleClick}>Atrás</span> {/* Evento de clic para retroceder */}
-            </button>
             <h2 className="onlytittle">¿Olvidaste tu contraseña?</h2>
           </div>
           <div>
             <p>
-              Si ha olvidado su contraseña, ingrese su correo electrónico registrado, 
-              si su información se encuentra en nuestro sistema le llegará un correo 
-              con los pasos para reestablecer su contraseña.
+              Ingresa tu correo electrónico para recibir un enlace para restablecer tu contraseña.
             </p>
           </div>
           <div className="minidiv">
-            <label>
-              Ingrese su correo electrónico:
-            </label>
-            <div className="split">
-              <input
-                placeholder="Correo"
-                title="Input title"
-                name="input-name"
-                type="text"
-                className="input_field"
-                size="30"
-              />
-              <button className="button" onClick={handleClick2}>Enviar</button>
-            </div>
+            <label>Correo electrónico:</label>
+            <input
+              name="email"
+              placeholder="Correo"
+              type="text"
+              className="input_field"
+            />
+            <button className="button" onClick={handleForgotPassword}>
+              Enviar
+            </button>
           </div>
         </div>
       </div>
