@@ -61,19 +61,6 @@
   color: #b0b3b8;
 }
 
-.play-button {
-  margin-left: auto; /* Mueve el botón hacia el final del contenedor */
-  background-color: #3c4d5a;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.play-button:hover {
-  background-color: #f04d4d;
-}
-
 .song-table {
   width: 100%;
   border-collapse: collapse;

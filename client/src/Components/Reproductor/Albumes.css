@@ -1,8 +1,10 @@
 /* Contenedor principal de los álbumes */
 .albumes-container {
     padding: 20px;
-    width: 100%;
+    width: 1000px; /* Ajusta el ancho para que sea un porcentaje de la pantalla */
+    max-width: 1200px; /* Asegura que no sobrepase un ancho máximo */
     color: white;
+    margin-left: 10%; /* Desplaza el contenedor un poco a la derecha */
 }
 
 /* Título de la página */

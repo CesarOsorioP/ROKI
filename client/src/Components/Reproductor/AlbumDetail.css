@@ -4,7 +4,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    width: 1420px; /* Ancho del contenedor */
+    width: 190vh; /* Ancho del contenedor */
     max-width: 100%;
     height: 70vh; /* Altura fija */
     background-color: rgba(20, 20, 20, 0.95); /* Fondo semitransparente */

@@ -1,0 +1,102 @@
+/* Contenedor general del formulario */
+.create-playlist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 1400px; /* Ajusta el ancho del formulario */
+    margin: 1%; /* Centra el formulario horizontalmente */
+    padding: 20px;
+    background-color: #2d2d2d; /* Fondo oscuro */
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 150vh;
+    height: 75vh;
+  }
+  
+  /* Estilo para las etiquetas */
+  .create-playlist-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block; /* Asegura que cada etiqueta esté en su propia línea */
+  }
+  
+  /* Estilo para los inputs de texto y archivo */
+  .create-playlist-form input[type="text"],
+  .create-playlist-form input[type="file"] {
+    width: 100vh; /* Ocupa todo el ancho del contenedor */
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3b3b3b;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease, border 0.3s ease;
+  }
+  
+  .create-playlist-form input[type="text"]:focus,
+  .create-playlist-form input[type="file"]:focus {
+    outline: none;
+    background-color: #4c4c4c;
+    border: 2px solid #67a569; /* Borde verde */
+  }
+  
+  /* Estilo para el checkbox */
+  .create-playlist-form input[type="checkbox"] {
+    margin-left: -140vh;
+    transform: scale(1.5); /* Aumenta ligeramente el tamaño */
+    cursor: pointer;
+  }
+  
+  /* Botón de submit */
+  .create-playlist-form button {
+    background-color: #67a569; /* Verde */
+    color: white;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 22vh;
+  }
+  
+  .create-playlist-form button:hover {
+    background-color: #558a4f; /* Verde oscuro */
+  }
+  
+  /* Ajusta el espaciado entre los campos */
+  .create-playlist-form div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Estilo del formulario cuando está vacío */
+  .create-playlist-form div:last-child {
+    margin-top: 10px;
+  }
+  
+  /* Título o mensaje opcional en la parte superior */
+  .create-playlist-form .form-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Mensaje de error o éxito */
+  .message {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .message.success {
+    color: rgb(255, 255, 255);
+  }
+  
+  .message.error {
+    color: red;
+  }
+  

@@ -32,27 +32,39 @@ const Songs = () => {
   return (
     <div className="songs-container">
       <h2>Mis Canciones Favoritas</h2>
-      {songs.length > 0 ? (
-        songs.map((song, index) => (
-          <div key={song._id} className="song-item">
-            {/* Imagen de la canción */}
-
-            {/* Información de la canción */}
-            <div className="song-info">
-              <h3>{song.nombre}</h3>
-              <p>{song.artista_id.nombre_artistico}</p> {/* Nombre del artista */}
+      <div className="songs-list">
+        {songs.length > 0 ? (
+          songs.map((song, index) => (
+            <div key={song._id} className="song-item">
+              {/* Imagen de la canción */}
+              <img
+                src={`http://localhost:5000/uploads/${song.imagen_portada}`}
+                alt={song.nombre}
+                className="song-image"
+              />
+  
+              {/* Información de la canción */}
+              <div className="song-list">
+                <h2>{song.nombre}</h2>
+                <p>{song.artista_id.nombre_artistico}</p>
+              </div>
+  
+              {/* Botón de reproducción */}
+              <button
+                className="play-button"
+                onClick={() => handlePlaySong(song, index)}
+              >
+                <FaPlay /> {/* Ícono de reproducción */}
+              </button>
             </div>
-            {/* Botón de reproducción */}
-            <button className="play-button" onClick={() => handlePlaySong(song, index)}>
-              <FaPlay /> {/* Ícono de reproducción */}
-            </button>
-          </div>
-        ))
-      ) : (
-        <p>No tienes canciones favoritas aún.</p>
-      )}
+          ))
+        ) : (
+          <p>No tienes canciones favoritas aún.</p>
+        )}
+      </div>
     </div>
   );
+  
 };
 
 export default Songs;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Albumes.css'; // Asegúrate de crear un archivo CSS para los estilos
+import Navbar from './Navbar'; 
 
 const Albumes = () => {
   const [albums, setAlbums] = useState([]);
@@ -21,6 +22,7 @@ const Albumes = () => {
 
   return (
     <div className="albumes-container">
+      <Navbar />
       <h1>Álbumes</h1>
       <div className="albumes-list">
         {albums.map(album => (
