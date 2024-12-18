@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import { FaPlay, FaTrashAlt } from "react-icons/fa";
 import { MdCreateNewFolder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 import "./UserPlaylists.css";
+import { PlayerContext } from '../../Context/PlayerContext';
 
 const UserPlaylists = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -12,6 +13,7 @@ const UserPlaylists = () => {
   const [songs, setSongs] = useState([]); // Canciones de la playlist seleccionada
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
+  const { playSong, setQueue } = useContext(PlayerContext);
 
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -34,17 +36,18 @@ const UserPlaylists = () => {
 
   const handleSelectPlaylist = async (playlist) => {
     setSelectedPlaylist(playlist);
+  
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/songs/playlist/${playlist._id}`
+        `http://localhost:5000/api/playlists/${playlist._id}/songs`
       );
-      setSongs(response.data);
+      setSongs(response.data); // Guarda las canciones obtenidas en el estado
     } catch (error) {
       console.error("Error fetching songs:", error);
       setSongs([]);
     }
   };
-
+  
   const handleDeletePlaylist = async (playlistId) => {
     try {
       await axios.delete(`http://localhost:5000/api/playlists/${playlistId}`);
@@ -56,6 +59,11 @@ const UserPlaylists = () => {
     } catch (error) {
       console.error("Error deleting playlist:", error);
     }
+  };
+
+  const handlePlaySong = (song, index) => {
+    setQueue(songs, index);
+    playSong(song);
   };
 
   return (
@@ -131,35 +139,35 @@ const UserPlaylists = () => {
               </button>
             </div>
 
-            {/* Tabla de canciones */}
-            <table className="song-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Título</th>
-                  <th>Álbum</th>
-                  <th>Duración</th>
-                </tr>
-              </thead>
-              <tbody>
-                {songs.length > 0 ? (
-                  songs.map((song, index) => (
-                    <tr key={song.id}>
-                      <td>{index + 1}</td>
-                      <td>{song.titulo}</td>
-                      <td>{song.album}</td>
-                      <td>{song.duracion}</td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="4" style={{ textAlign: "center" }}>
-                      No hay canciones disponibles.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+            {/* Lista de canciones en la playlist */}
+            <div className="songs-list">
+              {songs.length > 0 ? (
+                songs.map((song, index) => (
+                  <div key={song._id} className="song-item">
+                    {/* Imagen de portada */}
+                    <img
+                      src={`http://localhost:5000/uploads/${song.imagen_portada}`}
+                      alt={song.nombre}
+                      className="song-image"
+                      onError={(e) => {
+                        e.target.src = '/placeholder-image.jpg'; // Imagen de respaldo si falla
+                        e.target.alt = 'Imagen no disponible';
+                      }}
+                    />
+                    {/* Nombre de la canción */}
+                    <h2>{song.nombre}</h2>
+                    {/* Nombre del artista */}
+                    <p>{song.artista_id ? song.artista_id.nombre_artistico : 'Artista desconocido'}</p>
+                    {/* Botón para reproducir la canción */}
+                    <button className="play-button" onClick={() => handlePlaySong(song, index)}>
+                      <FaPlay />
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <p style={{ textAlign: "center" }}>No hay canciones disponibles.</p>
+              )}
+            </div>
           </>
         ) : (
           <p style={{ textAlign: "center" }}>Selecciona una playlist para verla.</p>

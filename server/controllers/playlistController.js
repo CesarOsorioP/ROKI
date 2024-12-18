@@ -61,6 +61,10 @@ const getUserPlaylists = async (req, res) => {
 const addSongToPlaylist = async (req, res) => {
   try {
     const { playlistId, songId } = req.params;
+
+    console.log('Playlist ID:', playlistId);
+    console.log('Song ID:', songId);
+
     const playlist = await Playlist.findById(playlistId);
 
     if (!playlist) {
@@ -75,6 +79,7 @@ const addSongToPlaylist = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 // Like/Unlike una canción
 const likeSong = async (req, res) => {
@@ -125,10 +130,41 @@ const deletePlaylist = async (req, res) => {
   }
 };
 
+// Obtener canciones de una playlist específica
+const getPlaylistSongs = async (req, res) => {
+  try {
+    const { playlistId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(playlistId)) {
+      return res.status(400).json({ message: "Invalid playlist ID" });
+    }
+
+    const playlist = await Playlist.findById(playlistId).populate({
+      path: 'canciones',
+      populate: {
+        path: 'artista_id',
+        model: 'Artist',
+        select: 'nombre_artistico'
+      }
+    });
+
+    if (!playlist) {
+      return res.status(404).json({ message: "Playlist not found" });
+    }
+
+    res.json(playlist.canciones); // Retorna solo las canciones de la playlist
+  } catch (error) {
+    console.error("Error fetching songs from playlist:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
 module.exports = {
   createPlaylist,
   getPublicPlaylists,
   getUserPlaylists,
   addSongToPlaylist,
-  likeSong, deletePlaylist
+  likeSong, deletePlaylist,
+  getPlaylistSongs
 };
