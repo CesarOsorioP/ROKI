@@ -6,6 +6,7 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import Reproductor from './Pages/Reproductor';
 import Pagospage from './Pages/Pagos';
+import ArtistInfo from './Components/Reproductor/ArtistInfo';
 import ResultsPage from './Pages/searcher';
 import UserInfo from './Components/Reproductor/UserInfo';
 import RecuperatePage from './Pages/recuperarContrase;a';
@@ -23,8 +24,6 @@ import Player from './Components/Reproductor/Player'; // Importa el componente P
 import CreatePlaylistPage from './Pages/CreatePlaylistPage'; // Importa la nueva página de CreatePlaylist
 import SongsPage from './Pages/SongsPage'; // Importa la página de Songs
 import ActualizarContraseña from './Pages/ActualizarContraseñaa'; // Importa la página ActualizarContraseña
-import ArtistDetailPage from './Pages/AlbumDetail';
-import Artist from './Pages/Artist';
 
 function App() {
   return (
@@ -45,6 +44,7 @@ function App() {
             {/* Rutas de administración */}
             <Route path="/admin/create" element={<CreateAdmin />} />
             {/* Rutas de gestión de artistas */}
+            <Route path="/artist" element={<ArtistInfo />} />
             <Route path="/artist/create" element={<CreateArtist />} />
             <Route path="/artist/upload-album" element={<UploadAlbum />} />
             <Route path="/artist/upload-song" element={<UploadSong />} />
@@ -53,8 +53,6 @@ function App() {
             <Route path="/playlist" element={<PlayList />} /> {/* Ruta para ver las playlists del usuario */}
             <Route path="/albumes" element={<Album />} /> {/* Importa la página Album */}
             <Route path="/album/:id" element={<AlbumDetail />} />
-            <Route path="/artist/:artistId" element={<ArtistDetailPage />} />
-            <Route path="/artist" element={<Artist />} />
             <Route path="/create-playlist" element={<CreatePlaylistPage />} /> {/* Nueva ruta para crear playlist */}
             <Route path="/songs" element={<SongsPage />} /> {/* Nueva ruta para la página de canciones */}
             <Route path="/actualizar-contraseña" element={<ActualizarContraseña />} /> {/* Nueva ruta para ActualizarContraseña */}

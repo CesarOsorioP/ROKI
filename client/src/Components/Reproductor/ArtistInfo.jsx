@@ -1,43 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 
-
-const ArtistInfo = () => {
-  const [artists, setArtists] = useState([]);
+function ArtistInfo({ artistId }) {
+  const [albums, setAlbums] = useState([]);
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
-    const fetchArtists = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/artists/artists');
-        setArtists(response.data);
-      } catch (error) {
-        console.error('Error fetching artists:', error);
-      }
-    };
+    // Llamada a la API para obtener los álbumes del artista
+    fetch(`/api/artists/${artistId}/albums`)
+      .then(response => response.json())
+      .then(data => setAlbums(data))
+      .catch(error => console.error('Error:', error));
 
-    fetchArtists();
-  }, []);
+    // Llamada a la API para obtener las canciones del artista
+    fetch(`/api/artists/${artistId}/songs`)
+      .then(response => response.json())
+      .then(data => setSongs(data))
+      .catch(error => console.error('Error:', error));
+  }, [artistId]);
 
   return (
-    <div className="artist-info-container">
-      <h1>Artistas</h1>
-      <div className="artist-list">
-        {artists.map(artist => (
-          <div key={artist._id} className="artist-item">
-            <Link to={`/artist/${artist._id}`}>
-              <img 
-                src={`http://localhost:5000/uploads/${artist.imagen}`} 
-                alt={artist.nombre_artistico} 
-                className="artist-image" 
-              />
-              <h3>{artist.nombre_artistico}</h3>
-            </Link>
-          </div>
+    <div>
+      <h2>Álbumes del Artista</h2>
+      <ul>
+        {albums.map(album => (
+          <li key={album._id}>{album.nombre}</li>
         ))}
-      </div>
+      </ul>
+      <h2>Canciones del Artista</h2>
+      <ul>
+        {songs.map(song => (
+          <li key={song._id}>{song.nombre}</li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
 
 export default ArtistInfo;
