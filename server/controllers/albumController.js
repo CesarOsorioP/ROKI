@@ -20,18 +20,19 @@ const searchAlbums = async (req, res) => {
 
 const getAlbumsByArtist = async (req, res) => {
   try {
-    const { artistId } = req.query;
-    if (!artistId) {
+    const { id } = req.params; // Usar params en lugar de query
+    if (!id) {
       return res.status(400).json({ message: "Artist ID is required" });
     }
 
-    const albums = await Album.find({ artista_id: artistId }).populate('artista_id', 'nombre_artistico');
+    const albums = await Album.find({ artista_id: id }).populate('artista_id', 'nombre_artistico');
     res.json(albums);
   } catch (error) {
     console.error("Error in getAlbumsByArtist:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 // Nueva función para obtener todos los álbumes
 const getAlbums = async (req, res) => {

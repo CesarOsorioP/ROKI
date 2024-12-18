@@ -1,28 +1,16 @@
-/* Contenedor principal para resultados de búsqueda */
 .splitsearcher {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Se ajustan dinámicamente a la pantalla */
-  grid-template-rows: repeat(auto-fill, minmax(300px, 1fr)) ;
+  display: flex; /* Cambiar a flexbox */
+  flex-direction: row; /* Asegurar que los elementos se dispongan en una fila */
+  flex-wrap: wrap; /* Permitir que los elementos salten a la siguiente fila si exceden el ancho */
   gap: 20px; /* Espacio entre los elementos */
-  max-height: 80vh; /* Aumentar la altura máxima para aprovechar más espacio vertical */
-  overflow-y: auto; /* Desplazamiento solo en el eje vertical si hay demasiados resultados */
+  max-width: 100%; /* Usar todo el ancho disponible */
+  overflow-x: auto; /* Permitir desplazamiento horizontal si es necesario */
   padding: 20px;
   box-sizing: border-box; /* Incluir padding y border en el tamaño total del contenedor */
+  align-items: flex-start; /* Alinear los elementos en la parte superior si tienen alturas diferentes */
 }
-
 /* Contenedor de cada mini-div (resultado individual) */
-.minidiv {
-  background-color: black;
-  color: white;
-  padding: 20px; /* Aumentar el padding para más espacio interno */
-  border: 1px solid white;
-  border-radius: 8px;
-  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.3);
-  margin: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; /* Asegura que el contenido esté bien alineado */
-}
+
 
 /* Estilo para los textos de título */
 .title h2 {
@@ -61,3 +49,65 @@
   font-weight: bold;
   text-align: center; /* Centrar el texto de error */
 }
+
+.genre-buttons{
+  display: flex;
+  gap: 15px;
+}
+
+
+/* Individual song card */
+.song-card {
+  background: #1e1e1e; /* Fondo oscuro para cada tarjeta */
+  border: 1px solid #007bff; /* Borde azul para destacar */
+  border-radius: 8px; /* Bordes redondeados */
+  width: 200px; /* Ancho fijo para mantener consistencia */
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for song cards */
+.song-card:hover {
+  transform: scale(1.05); /* Aumentar tamaño al pasar el mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
+}
+
+/* Song image */
+.song-image {
+  width: 100%; /* Hacer la imagen responsiva */
+  height: 150px; /* Altura fija */
+  object-fit: cover; /* Ajustar imagen sin deformarla */
+  border-radius: 8px; /* Bordes redondeados */
+  margin-bottom: 10px; /* Espaciado inferior */
+}
+
+/* Song details container */
+.song-details h4 {
+  font-size: 1rem;
+  color: #ffffff; /* Texto blanco */
+  margin: 5px 0;
+}
+
+.song-details p {
+  font-size: 0.9rem;
+  color: #aaaaaa; /* Texto gris claro */
+  margin: 5px 0;
+}
+
+/* Play button */
+.play-button {
+  background: #007bff; /* Fondo azul */
+  color: #ffffff; /* Texto blanco */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.play-button:hover {
+  background: #0056b3; /* Azul más oscuro al hacer hover */
+}
+

@@ -73,7 +73,7 @@ const Search = () => {
       </div>
         <SearcherComponent />
         <div className="title">
-          <h2>Resultados que concuerdan con: {query}</h2>
+          <h2> {query}</h2>
         </div>
 
         <div className="genre-buttons">
@@ -92,7 +92,7 @@ const Search = () => {
         <div className="splitsearcher">
           {error && <p className="error">{error}</p>}
 
-          <div className="grid">
+          <div className="splitsearcher">
             {(filteredSongs.length > 0 ? filteredSongs : songs).map((song, index) => (
               <div key={song._id} className="song-card">
                 <img
@@ -111,7 +111,7 @@ const Search = () => {
                     className="play-button" 
                     onClick={() => handlePlaySong(song, index)}
                   >
-                    <FaPlay /> Reproducir
+                    <FaPlay />
                   </button>
                 </div>
               </div>
