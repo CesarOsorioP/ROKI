@@ -2,6 +2,7 @@
 .splitsearcher {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Se ajustan dinámicamente a la pantalla */
+  grid-template-rows: repeat(auto-fill, minmax(300px, 1fr)) ;
   gap: 20px; /* Espacio entre los elementos */
   max-height: 80vh; /* Aumentar la altura máxima para aprovechar más espacio vertical */
   overflow-y: auto; /* Desplazamiento solo en el eje vertical si hay demasiados resultados */
