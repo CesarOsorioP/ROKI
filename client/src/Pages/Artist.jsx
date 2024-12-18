@@ -1,12 +1,15 @@
 import React from 'react';
-import ArtistPage from '../Components/Reproductor/ArtistInfo'; 
 
-const artist = () => {
+import ArtistInfo from '../Components/Reproductor/ArtistInfo';
+
+
+const ArtistInfoPage = () => {
   return (
-    <div className='artist'>
-      <ArtistPage />
+
+    <div className='ArtistInfo'>
+      <ArtistInfo />
     </div>
   );
 }
 
-export default artist;
+export default ArtistInfoPage;

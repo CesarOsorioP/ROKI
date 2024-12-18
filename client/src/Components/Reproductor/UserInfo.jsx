@@ -11,18 +11,16 @@ function UserInfo({ userName, gradientColor }) {
           <div className="banner-overlay"></div> {/* Capa de estilo extra para elegancia */}
         </div>
         <div className="user-details">
-        <h3>Usuario</h3>
+          <h3>{userName ? ` Bienvenido, ${userName}` : ' Usuario'}</h3> {/* Muestra el nombre del usuario */}
           <hr />
           <div className="user-name">
             <h3>{userName}</h3>
           </div>
         </div>
         <div className="navigation">
-          <button>Canciones</button>
-          <button>Álbumes</button>
-          <button>Artistas</button>
-          <button>Seguidores</button>
-          <button>Siguiendo</button>
+          <a href="/songs"><button>Canciones</button></a>
+          <a href="/albumes"><button>Álbumes</button></a>
+          <a href="/Playlist"><button>Listas de Reproducción</button></a>
         </div>
       </div>
     </>
