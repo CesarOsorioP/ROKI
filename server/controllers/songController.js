@@ -48,13 +48,13 @@ const searchSong = async (req, res) => {
 
 const getSongsByArtist = async (req, res) => {
   try {
-    const { artistId } = req.params; // Obtener el artistId desde los parámetros de la URL
+    const { artistId } = req.params;
     if (!artistId) {
       return res.status(400).json({ message: "Artist ID is required" });
     }
 
-    const songs = await Song.find({ artista_id: artistId }) // Filtrar canciones por artistId
-      .populate('artista_id', 'nombre_artistico'); // Obtener los detalles del artista si es necesario
+    const songs = await Song.find({ artista_id: artistId })
+      .populate('artista_id', 'nombre_artistico');
 
     res.json(songs);
   } catch (error) {
@@ -63,21 +63,16 @@ const getSongsByArtist = async (req, res) => {
   }
 };
 
-
-
 const deleteSong = async (req, res) => {
   try {
-    const { id } = req.params; // ID de la canción enviada como parámetro en la ruta
-
-    const song = await Song.findById(id); 
+    const { id } = req.params;
+    const song = await Song.findById(id);
 
     if (!song) {
       return res.status(404).json({ message: 'La canción no existe.' });
     }
 
-    // Eliminar la canción utilizando deleteOne()
     await Song.deleteOne({ _id: id });
-
     res.status(200).json({ message: 'Canción eliminada exitosamente.' });
   } catch (error) {
     console.error('Error eliminando canción:', error);
@@ -86,5 +81,36 @@ const deleteSong = async (req, res) => {
 };
 
 
+// Controlador para obtener canciones por género
+const getSongsByGenre = async (req, res) => {
+  try {
+    const { genre } = req.params; // Obtén el género de los parámetros de la URL
 
-module.exports = { searchSong, getAllSongs, getSongsByAlbum, deleteSong, getSongsByArtist };
+    if (!genre) {
+      return res.status(400).json({ message: "Genre is required" });
+    }
+
+    // Realiza la búsqueda en la base de datos
+    const songs = await Song.find({ genero: genre }).populate('artista_id', 'nombre_artistico');
+
+    if (!songs || songs.length === 0) {
+      return res.status(404).json({ message: "No songs found for this genre" });
+    }
+
+    res.status(200).json(songs); // Devuelve las canciones como respuesta
+  } catch (error) {
+    console.error("Error in getSongsByGenre:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+
+module.exports = { 
+  searchSong, 
+  getAllSongs, 
+  getSongsByAlbum, 
+  deleteSong, 
+  getSongsByArtist, 
+  getSongsByGenre 
+};

@@ -1,59 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Card from "../Pagos/card.jsx";
 import "./searcher.css";
 import SearcherComponent from "./searcherinput.jsx";
+import { PlayerContext } from '../../Context/PlayerContext';
+import { FaPlay } from 'react-icons/fa';
 
 const Search = () => {
-  const [artists, setArtists] = useState([]); // Estado para artistas
-  const [users, setUsers] = useState([]); // Estado para usuarios
-  const [songs, setSongs] = useState([]); // Estado para canciones
-  const [albums, setAlbums] = useState([]); // Estado para álbumes
-  const [error, setError] = useState(null); // Estado para errores
+  const [artists, setArtists] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [songs, setSongs] = useState([]);
+  const [filteredSongs, setFilteredSongs] = useState([]);
+  const [albums, setAlbums] = useState([]);
+  const [error, setError] = useState(null);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const query = searchParams.get("query"); // Obtén el parámetro "query" desde la URL
+  const query = searchParams.get("query");
+  const { playSong, setQueue } = useContext(PlayerContext);
 
+  const genres = ["Pop", "Rock", "Hip-hop", "Jazz", "Reggaeton"]; // Géneros disponibles
+
+  // Fetch de resultados iniciales
   useEffect(() => {
     const fetchResultados = async () => {
       try {
-        // Realizar llamadas a las APIs
-        const artistsPromise = fetch(
-          `http://localhost:5000/api/artists/explore?search=${query}`
-        );
-        const usersPromise = fetch(
-          `http://localhost:5000/api/admin/explore?search=${query}`
-        );
-        const songPromise = fetch(
-          `http://localhost:5000/api/songs/explore?search=${query}`
-        );
-        const albumPromise = fetch(
-          `http://localhost:5000/api/albums/explore?search=${query}`
-        );
-
-        const [artistsResponse, usersResponse, songResponse, albumResponse] = await Promise.all([
-          artistsPromise,
-          usersPromise,
-          songPromise,
-          albumPromise,
-        ]);
-
-        // Verifica el estado de las respuestas y maneja los errores individualmente
-        const artistsData = artistsResponse.ok ? await artistsResponse.json() : [];
-        const usersData = usersResponse.ok ? await usersResponse.json() : [];
-        const songsData = songResponse.ok ? await songResponse.json() : [];
-        const albumsData = albumResponse.ok ? await albumResponse.json() : [];
-
-        // Actualizar estados
-        setArtists(artistsData);
-        setUsers(usersData);
+        const response = await fetch(`http://localhost:5000/api/songs/explore?search=${query}`);
+        const songsData = response.ok ? await response.json() : [];
         setSongs(songsData);
-        setAlbums(albumsData);
-
-        // Restablecer errores si todo funciona bien
         setError(null);
       } catch (err) {
-        console.error("Error al obtener los Resultados:", err);
+        console.error("Error al obtener los resultados:", err);
         setError("Error al obtener los resultados. Por favor, intenta nuevamente.");
       }
     };
@@ -61,73 +37,78 @@ const Search = () => {
     if (query) fetchResultados();
   }, [query]);
 
+  // Fetch de canciones filtradas por género
+  const fetchSongsByGenre = async (genre) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/songs/genre/${genre}`);
+      if (response.ok) {
+        const data = await response.json();
+        setFilteredSongs(data);
+        setError(null);
+      } else {
+        setFilteredSongs([]);
+        setError("No se encontraron canciones para este género.");
+      }
+    } catch (err) {
+      console.error("Error al filtrar por género:", err);
+      setError("Error al filtrar por género. Por favor, intenta nuevamente.");
+    }
+  };
+
+  const handlePlaySong = (song, index) => {
+    setQueue(filteredSongs.length > 0 ? filteredSongs : songs, index);
+    playSong(song);
+  };
+
   return (
     <Card>
       <div className="divprime">
-        <div className="divprime">
         <SearcherComponent />
-          <div className="title">
-            <h2>Resultados que concuerden con: {query}</h2>
-          </div>
+        <div className="title">
+          <h2>Resultados que concuerdan con: {query}</h2>
         </div>
+
+        <div className="genre-buttons">
+          <h3>Filtrar por género:</h3>
+          {genres.map((genre) => (
+            <button 
+              key={genre} 
+              onClick={() => fetchSongsByGenre(genre)}
+              className="genre-button"
+            >
+              {genre}
+            </button>
+          ))}
+        </div>
+
         <div className="splitsearcher">
-        {error && <p className="error">{error}</p>}
-        
-        <div className="grid">
-          {/* Renderizar sección de resultados */}
-          {artists.length > 0 && (
-            <div className="minidiv">
-              <h3>Artistas</h3>
-              {artists.map((artist, index) => (
-                <div key={index} className="minidiv">
-                  <p><strong>Nombre Artístico:</strong> {artist.nombre_artistico}</p>
-                </div>
-              ))}
-            </div>
-          )}
+          {error && <p className="error">{error}</p>}
 
-          {/* Renderizar sección de usuarios */}
-          {users.length > 0 && (
-            <div className="minidiv">
-              <h3>Usuarios</h3>
-              {users.map((user, index) => (
-                <div key={index} className="minidiv">
-                  <p><strong>Usuario:</strong> {user.username}</p>
+          <div className="grid">
+            {(filteredSongs.length > 0 ? filteredSongs : songs).map((song, index) => (
+              <div key={song._id} className="song-card">
+                <img
+                  src={`http://localhost:5000/uploads/${song.imagen_portada}`}
+                  alt={song.nombre}
+                  className="song-image"
+                  onError={(e) => {
+                    e.target.src = '/placeholder-image.jpg';
+                    e.target.alt = 'Imagen no disponible';
+                  }}
+                />
+                <div className="song-details">
+                  <h4>{song.nombre}</h4>
+                  <p>{song.artista_id ? song.artista_id.nombre_artistico : 'Artista desconocido'}</p>
+                  <button 
+                    className="play-button" 
+                    onClick={() => handlePlaySong(song, index)}
+                  >
+                    <FaPlay /> Reproducir
+                  </button>
                 </div>
-              ))}
-            </div>
-          )}
-
-          {/* Renderizar sección de canciones */}
-          {songs.length > 0 && (
-            <div className="minidiv">
-              <h3>Canciones</h3>
-              {songs.map((song, index) => (
-                <div key={index} className="minidiv">
-                  <p><strong>Nombre de Canción:</strong> {song.nombre}</p>
-                  
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Renderizar sección de álbumes */}
-          {albums.length > 0 && (
-            <div className="minidiv">
-              <h3>Álbumes</h3>
-              {albums.map((album, index) => (
-                <div key={index} className="minidiv">
-                  <p><strong>Nombre del Álbum:</strong> {album.nombre}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Mostrar mensaje si no hay resultados */}
-          {artists.length === 0 && users.length === 0 && songs.length === 0 && albums.length === 0 && !error && (
-            <p>No se encontraron resultados.</p>
-          )}
-        </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </Card>
