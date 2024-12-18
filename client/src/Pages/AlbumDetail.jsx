@@ -1,12 +1,12 @@
 import React from 'react';
-import AlbumDetail from '../Components/Reproductor/AlbumDetail'; // Asegúrate de que la ruta sea correcta
+import ArtistDetail from '../Components/Reproductor/ArtistDetail';
 
-const AlbumDetailPage = () => {
+const ArtistDetailPage = () => {
   return (
-    <div className='AlbumDetail'>
-      <AlbumDetail />
+    <div className='ArtistDetail'>
+      <ArtistDetail />
     </div>
   );
-}
+};
 
-export default AlbumDetailPage;
+export default ArtistDetailPage;
