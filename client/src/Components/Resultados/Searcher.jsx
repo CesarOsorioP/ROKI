@@ -7,16 +7,17 @@ import { PlayerContext } from '../../Context/PlayerContext';
 import { FaPlay } from 'react-icons/fa';
 
 const Search = () => {
-  const navigate = useNavigate();
-  const handleBack = () => {
-    navigate(-1); // Navega al estado anterior
-  };
-
-  const [artists, setArtists] = useState([]); // Estado para artistas
-  const [users, setUsers] = useState([]); // Estado para usuarios
-  const [songs, setSongs] = useState([]); // Estado para canciones
-  const [albums, setAlbums] = useState([]); // Estado para álbumes
-  const [error, setError] = useState(null); // Estado para errores
+   const navigate = useNavigate();
+  
+    const handleBack = () => {
+      navigate(-1); // Navega al estado anterior
+    };
+  const [artists, setArtists] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [songs, setSongs] = useState([]);
+  const [filteredSongs, setFilteredSongs] = useState([]);
+  const [albums, setAlbums] = useState([]);
+  const [error, setError] = useState(null);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("query");
@@ -70,7 +71,6 @@ const Search = () => {
       <div onClick={handleBack} className="back-button2">
         volver
       </div>
-        <div className="divprime">
         <SearcherComponent />
         <div className="title">
           <h2>Resultados que concuerdan con: {query}</h2>
