@@ -8,6 +8,7 @@ import "./UserPlaylists.css";
 import { PlayerContext } from '../../Context/PlayerContext';
 
 const UserPlaylists = () => {
+  const [username, setUsername] = useState(null);
   const [playlists, setPlaylists] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null); // Playlist seleccionada
   const [songs, setSongs] = useState([]); // Canciones de la playlist seleccionada
@@ -16,6 +17,8 @@ const UserPlaylists = () => {
   const { playSong, setQueue } = useContext(PlayerContext);
 
   useEffect(() => {
+    const storedUser = localStorage.getItem('username');
+    if (storedUser) setUsername(storedUser);
     const fetchPlaylists = async () => {
       try {
         const response = await axios.get(
@@ -129,8 +132,11 @@ const UserPlaylists = () => {
 
               {/* Detalles de la playlist */}
               <div className="playlist-details">
-                <h2>{selectedPlaylist.nombre}</h2>
-                <p>Usuario: {selectedPlaylist.usuario}</p>
+                <p>Playlist: </p>
+                <h1>{selectedPlaylist.nombre}</h1>
+                <li>
+                 {username ? `Usuario:  ${username}` : ""}
+                </li>
               </div>
 
               {/* Botón de acción */}
@@ -140,7 +146,7 @@ const UserPlaylists = () => {
             </div>
 
             {/* Lista de canciones en la playlist */}
-            <div className="songs-list">
+            <div>
               {songs.length > 0 ? (
                 songs.map((song, index) => (
                   <div key={song._id} className="song-item">

@@ -6,14 +6,15 @@
   }
   
   .playlist-select {
-    padding: 5px;
-    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #c5c5c5;
+    border: 1px solid #000000;
     border-radius: 5px;
   }
   
   .add-to-playlist-button {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #c5c5c5;
+    color: #000000;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
@@ -22,7 +23,7 @@
   }
   
   .add-to-playlist-button:hover {
-    background-color: #0056b3;
+    background-color: #f7fbff;
   }
   
   .success-message {

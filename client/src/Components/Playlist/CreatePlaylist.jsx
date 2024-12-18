@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  } from 'react';
 import axios from 'axios';
 import './CreatePlaylist.css';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePlaylist = () => {
+   const navigate = useNavigate();
+  
+    const handleBack = () => {
+      navigate(-1); // Navega al estado anterior
+    };
   const [nombre, setNombre] = useState('');
   const [publica, setPublica] = useState(true);
   const [imagenPortada, setImagenPortada] = useState(null);

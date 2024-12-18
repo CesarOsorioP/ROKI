@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import './AddToPlaylistButton.css'
 const AddToPlaylistButton = ({ userId, songId }) => {
   const [playlists, setPlaylists] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState('');
@@ -35,8 +35,9 @@ const AddToPlaylistButton = ({ userId, songId }) => {
   };
 
   return (
-    <div>
-      <select onChange={(e) => setSelectedPlaylist(e.target.value)} value={selectedPlaylist}>
+    <div className='add-to-playlist-container'>
+      <button className='add-to-playlist-button' onClick={handleAddSong}>Añadir a Playlist</button>
+      <select className='playlist-select' onChange={(e) => setSelectedPlaylist(e.target.value)} value={selectedPlaylist}>
         <option value="">Selecciona una playlist</option>
         {playlists.map((playlist) => (
           <option key={playlist._id} value={playlist._id}>
@@ -44,7 +45,6 @@ const AddToPlaylistButton = ({ userId, songId }) => {
           </option>
         ))}
       </select>
-      <button onClick={handleAddSong}>Añadir a Playlist</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );

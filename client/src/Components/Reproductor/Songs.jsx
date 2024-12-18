@@ -32,7 +32,7 @@ const Songs = () => {
   return (
     <div className="songs-container">
       <h2>Mis Canciones Favoritas</h2>
-      <div className="songs-list">
+      <div className="songs-list2">
         {songs.length > 0 ? (
           songs.map((song, index) => (
             <div key={song._id} className="song-item">

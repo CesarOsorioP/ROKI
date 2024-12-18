@@ -32,8 +32,10 @@ const LikeButton = ({ userId, songId }) => {
   };
 
   return (
-    <button onClick={handleLike} className="like-button">
-      <i className={`fas fa-heart${liked ? '' : '-o'}`} /> {/* Ícono de corazón */}
+    <button onClick={handleLike} className='button-color' >
+      <p>Like</p>
+      <i className={`fas fa-heart${liked ? '' : '-o'}`} 
+      style={{ color: liked ? 'red' : 'white' }}/> {/* Ícono de corazón */}
     </button>
   );
 };

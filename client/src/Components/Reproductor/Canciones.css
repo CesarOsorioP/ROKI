@@ -10,7 +10,7 @@
   box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
   border: 3px solid rgba(255, 255, 255, 0.3);
   border-radius: 25px;
-  width: 170vh; /* Ajusta el ancho */
+  width: 180vh; /* Ajusta el ancho */
   height: 80vh; /* Altura de la lista de canciones */
 }
 
@@ -44,7 +44,7 @@
 }
 
 .song-item:hover {
-  transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+  transform: scale(1.02); /* Efecto de zoom al pasar el mouse */
 }
 
 .song-image {

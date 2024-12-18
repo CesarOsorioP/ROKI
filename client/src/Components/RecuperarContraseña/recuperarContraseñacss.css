@@ -1,15 +1,15 @@
 
 
 .divprime{
-  margin: 30px;
-  padding: 20px;
-  max-width: 600px;
-  max-height: auto;
+  max-width: 120vh;
+  max-height: 60vh;
+  margin: 80px;
+  padding: 5px;
  
 }
 
 .minidiv{
-margin: 20px;
+margin: 10px;
 padding: 10px;
 }
 
@@ -96,4 +96,22 @@ button {
   border: 1px solid #e5e5e500;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
   color: white;
+}
+
+.back-button2 {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #007bff; /* Azul */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.back-button2:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
 }

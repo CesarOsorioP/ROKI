@@ -57,8 +57,10 @@
 }
 
 .playlist-details p {
-  margin: 0;
-  color: #b0b3b8;
+  margin: -5px;
+  margin-top: 15px;
+  font-style: italic;
+  color: #ffffff;
 }
 
 .song-table {

@@ -1,0 +1,15 @@
+.songs-list2 {
+    display: flex;
+    flex-direction: column; /* Cambia a disposición en columnas */
+    gap: 16px;
+    overflow-y: auto; /* Habilita el scroll vertical */
+    padding: 20px;
+    scrollbar-width: thin; /* Ajusta el ancho del scrollbar (Firefox) */
+    scrollbar-color: #69d0ff transparent; /* Colores del scrollbar */
+    background-color: rgba(20, 20, 20, 0.95); /* Fondo semitransparente */
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    width: 150vh; /* Ajusta el ancho */
+    height: 60vh; /* Altura de la lista de canciones */
+  }

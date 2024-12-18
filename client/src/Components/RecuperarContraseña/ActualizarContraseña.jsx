@@ -1,6 +1,7 @@
 // src/Components/RecuperarCont/ActualizarContraseña.jsx
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import './ActualizarContraseña.css'
 
 
 const ActualizarContraseña = () => {
@@ -8,14 +9,15 @@ const ActualizarContraseña = () => {
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
 
+
   const handleResetPassword = async () => {
     const query = new URLSearchParams(location.search);
     const token = query.get("token");
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/reset-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:5000/api/auth/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, newPassword }),
       });
 
@@ -23,13 +25,14 @@ const ActualizarContraseña = () => {
       setMessage(data.msg);
     } catch (error) {
       console.error(error);
-      setMessage('Error al actualizar la contraseña.');
+      setMessage("Error al actualizar la contraseña.");
     }
   };
 
   return (
-    <div className="actualizar-contraseña-form">
+    <div className="update-password-form">
       <h2>Actualizar Contraseña</h2>
+      <p>Digita tu nueva contraseña.</p>
       <input
         type="password"
         placeholder="Nueva contraseña"
@@ -38,6 +41,7 @@ const ActualizarContraseña = () => {
       />
       <button onClick={handleResetPassword}>Actualizar</button>
       <p>{message}</p>
+      <p>Puedes cerrar esta ventana.</p>
     </div>
   );
 };

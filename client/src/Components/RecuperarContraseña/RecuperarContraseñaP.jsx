@@ -1,8 +1,15 @@
 import React from "react";
 import Card from "../Pagos/card.jsx";
 import "./recuperarContraseñacss.css";
+import { useNavigate } from "react-router-dom";
+
 
 const RecuperarContraseña = () => {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1); // Navega al estado anterior
+  };
   const handleForgotPassword = async () => {
     const email = document.querySelector('input[name="email"]').value;
 
@@ -28,6 +35,9 @@ const RecuperarContraseña = () => {
   return (
     <Card>
       <div className="divprime">
+      <div onClick={handleBack} className="back-button2">
+        volver
+      </div>
         <div className="split1">
           <div className="tittle">
             <h2 className="onlytittle">¿Olvidaste tu contraseña?</h2>
