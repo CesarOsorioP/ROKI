@@ -106,11 +106,50 @@ const getSongsByGenre = async (req, res) => {
 
 
 
+
+
+// Controlador para obtener canciones aleatorias
+const getRandomSongs = async (req, res) => {
+  try {
+    const randomSongs = await Song.aggregate([
+      { $sample: { size: 4 } }, // Obtener 4 canciones aleatorias
+      {
+        $lookup: {
+          from: 'artistas', // Nombre de la colección de artistas
+          localField: 'artista_id',
+          foreignField: '_id',
+          as: 'artista_info'
+        }
+      },
+      {
+        $unwind: '$artista_info' // Descomponer el array para que sea un objeto
+      },
+      {
+        $project: {
+          _id: 1,
+          nombre: 1,
+          image: 1, // Asegúrate de que las canciones tienen una propiedad 'image'
+          'artista_id': '$artista_info._id',
+          'artista_nombre': '$artista_info.nombre_artistico'
+        }
+      }
+    ]);
+
+    res.status(200).json(randomSongs); // Enviar las canciones aleatorias como respuesta JSON
+  } catch (error) {
+    console.error("Error in getRandomSongs:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
 module.exports = { 
   searchSong, 
   getAllSongs, 
   getSongsByAlbum, 
   deleteSong, 
   getSongsByArtist, 
-  getSongsByGenre 
+  getSongsByGenre,
+  getRandomSongs // Añade esta línea
 };
